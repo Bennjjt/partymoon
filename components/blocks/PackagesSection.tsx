@@ -133,8 +133,8 @@ function PackageCard({ pkg }: { pkg: Package }) {
         <div className="min-h-6 mb-3">
           {pkg.badge && (
             <span
-              className="text-[0.55rem] tracking-[0.2em] uppercase px-3 py-1 text-white rounded-[2px]"
-              style={{ background: 'var(--pm-purple)' }}
+              className="text-[0.55rem] tracking-[0.2em] uppercase px-3 py-1 rounded-[2px]"
+              style={{ background: 'var(--pm-purple)', color: 'var(--pm-midnight)' }}
             >
               {pkg.badge}
             </span>
@@ -170,20 +170,23 @@ function PackageCard({ pkg }: { pkg: Package }) {
       <div className="p-6 pt-0">
         <a
           href="#trips"
-          className="block text-center text-[0.6rem] tracking-[0.2em] uppercase py-[0.9rem] border text-white rounded-[2px] transition-colors"
+          className="block text-center text-[0.6rem] tracking-[0.2em] uppercase py-[0.9rem] border rounded-[2px] transition-colors"
           style={{
             background: pkg.featured ? 'var(--pm-purple)' : 'transparent',
             borderColor: pkg.featured ? 'var(--pm-purple)' : 'var(--pm-glass-border)',
+            color: pkg.featured ? 'var(--pm-midnight)' : 'var(--pm-cream)',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'var(--pm-purple)'
             e.currentTarget.style.borderColor = 'var(--pm-purple)'
+            e.currentTarget.style.color = 'var(--pm-midnight)'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = pkg.featured ? 'var(--pm-purple)' : 'transparent'
             e.currentTarget.style.borderColor = pkg.featured
               ? 'var(--pm-purple)'
               : 'var(--pm-glass-border)'
+            e.currentTarget.style.color = pkg.featured ? 'var(--pm-midnight)' : 'var(--pm-cream)'
           }}
         >
           Reserve — {pkg.name}

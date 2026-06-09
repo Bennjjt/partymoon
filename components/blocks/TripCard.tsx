@@ -100,10 +100,16 @@ export function TripCard({ trip }: { trip: Trip }) {
           ) : (
             <button
               onClick={handleBook}
-              className="flex-1 text-center text-[0.6rem] tracking-[0.2em] uppercase py-3 rounded-[2px] text-white border transition-colors"
-              style={{ background: 'var(--pm-purple)', borderColor: 'var(--pm-purple)' }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = 'transparent')}
-              onMouseLeave={(e) => (e.currentTarget.style.background = 'var(--pm-purple)')}
+              className="flex-1 text-center text-[0.6rem] tracking-[0.2em] uppercase py-3 rounded-[2px] border transition-colors"
+              style={{ background: 'var(--pm-purple)', borderColor: 'var(--pm-purple)', color: 'var(--pm-midnight)' }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'transparent'
+                e.currentTarget.style.color = 'var(--pm-purple)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'var(--pm-purple)'
+                e.currentTarget.style.color = 'var(--pm-midnight)'
+              }}
             >
               Reserve
             </button>

@@ -52,9 +52,11 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
       style={{ borderColor: 'var(--pm-glass-border)' }}
       animate={{
         y: isDark && !visible ? '-100%' : '0%',
+        // Framer Motion interpolates raw colour values — CSS variables cannot be
+        // used here, so we use the literal value of --pm-midnight (#080808).
         backgroundColor: isDark
-          ? 'rgba(15,15,30,0.97)'
-          : scrolled ? 'rgba(15,15,30,0.97)' : 'rgba(15,15,30,0)',
+          ? '#080808'
+          : scrolled ? '#080808' : 'rgba(0,0,0,0)',
         paddingTop:    isDark ? '1rem'  : scrolled ? '1rem'  : '1.5rem',
         paddingBottom: isDark ? '1rem'  : scrolled ? '1rem'  : '1.5rem',
       }}
@@ -76,7 +78,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
         style={{ borderColor: 'var(--pm-purple)', color: 'var(--pm-purple)' }}
         onMouseEnter={(e) => {
           e.currentTarget.style.background = 'var(--pm-purple)'
-          e.currentTarget.style.color = '#ffffff'
+          e.currentTarget.style.color = 'var(--pm-midnight)'
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.background = 'transparent'

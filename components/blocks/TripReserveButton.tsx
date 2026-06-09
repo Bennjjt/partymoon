@@ -24,15 +24,15 @@ export function TripReserveButton({ tripId, destination, date, priceFrom, varian
       style={{
         background:   isSolid ? 'var(--pm-purple)' : 'transparent',
         borderColor:  'var(--pm-purple)',
-        color:        isSolid ? '#ffffff' : 'var(--pm-purple)',
+        color:        isSolid ? 'var(--pm-midnight)' : 'var(--pm-purple)',
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.background  = isSolid ? 'transparent' : 'var(--pm-purple)'
-        e.currentTarget.style.color       = isSolid ? 'var(--pm-purple)' : '#ffffff'
+        e.currentTarget.style.color       = isSolid ? 'var(--pm-purple)' : 'var(--pm-midnight)'
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.background  = isSolid ? 'var(--pm-purple)' : 'transparent'
-        e.currentTarget.style.color       = isSolid ? '#ffffff' : 'var(--pm-purple)'
+        e.currentTarget.style.color       = isSolid ? 'var(--pm-midnight)' : 'var(--pm-purple)'
       }}
     >
       {isSolid ? 'Reserve your place' : 'Secure your spot'}

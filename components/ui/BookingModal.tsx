@@ -625,7 +625,7 @@ const input =
 // Buttons that use primaryBtn must supply the background via inline style or Tailwind
 // to work with AnimatePresence children. The purple bg is applied inline.
 const primaryBtn =
-  'w-full py-4 rounded-[2px] text-[0.65rem] tracking-[0.2em] uppercase font-medium text-white transition-opacity [background:var(--pm-purple)]'
+  'w-full py-4 rounded-[2px] text-[0.65rem] tracking-[0.2em] uppercase font-medium transition-opacity [background:var(--pm-purple)] [color:var(--pm-midnight)]'
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (

@@ -1,7 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+
+const VIDEO_SRC =
+  '/6710f615b852284eb2c54a89_67aaf271a8e2e550cf8739c5_250209_PENTHOUSE_BRAND%20VIDEO%20REFRESH_16-9-transcode.mp4'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -18,16 +20,25 @@ export function Hero() {
       className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32 pb-16 overflow-hidden"
       id="home"
     >
-      {/* Radial glow */}
-      <div
-        className="absolute inset-0 z-[1] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse at 50% 60%, rgba(var(--pm-purple-rgb),0.15) 0%, transparent 70%)',
-        }}
+      {/* Fullscreen video background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        src={VIDEO_SRC}
       />
 
-      <StarField />
+      {/* Dark overlay for text legibility */}
+      <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: 'rgba(0,0,0,0.48)' }} />
+
+      {/* Bottom gradient — blends into the next section */}
+      <div
+        className="absolute inset-0 z-[1] pointer-events-none"
+        style={{ background: 'var(--hero-overlay-gradient)' }}
+      />
 
       {/* Eyebrow */}
       <motion.p
@@ -79,8 +90,12 @@ export function Hero() {
       >
         <a
           href="#trips"
-          className="text-[0.65rem] tracking-[0.2em] uppercase px-10 py-4 text-white rounded-[2px] border transition-colors"
-          style={{ background: 'var(--pm-purple)', borderColor: 'var(--pm-purple)' }}
+          className="text-[0.65rem] tracking-[0.2em] uppercase px-10 py-4 rounded-[2px] border transition-colors"
+          style={{
+            background: 'var(--pm-purple)',
+            borderColor: 'var(--pm-purple)',
+            color: 'var(--pm-midnight)',
+          }}
           onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
           onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
         >
@@ -91,7 +106,7 @@ export function Hero() {
           className="text-[0.65rem] tracking-[0.2em] uppercase px-10 py-4 rounded-[2px] border transition-colors text-pm-gold"
           style={{ borderColor: 'var(--pm-gold-dim)' }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(242,216,120,0.08)'
+            e.currentTarget.style.background = 'rgba(var(--pm-gold-rgb, 242,216,120),0.08)'
             e.currentTarget.style.borderColor = 'var(--pm-gold)'
           }}
           onMouseLeave={(e) => {
@@ -119,53 +134,5 @@ export function Hero() {
         />
       </motion.div>
     </section>
-  )
-}
-
-interface StarDef {
-  id: number
-  x: number
-  y: number
-  size: number
-  delay: number
-  duration: number
-  opacity: number
-}
-
-function StarField() {
-  const [stars, setStars] = useState<StarDef[]>([])
-
-  useEffect(() => {
-    setStars(
-      Array.from({ length: 80 }, (_, id) => ({
-        id,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 2 + 1,
-        delay: Math.random() * 3,
-        duration: Math.random() * 4 + 2,
-        opacity: Math.random() * 0.6 + 0.1,
-      })),
-    )
-  }, [])
-
-  return (
-    <div className="absolute inset-0 z-[1] pointer-events-none">
-      {stars.map((star) => (
-        <motion.div
-          key={star.id}
-          className="absolute rounded-full"
-          style={{
-            left: `${star.x}%`,
-            top: `${star.y}%`,
-            width: star.size,
-            height: star.size,
-            background: 'var(--pm-moon)',
-          }}
-          animate={{ opacity: [star.opacity, 0.9, star.opacity], scale: [0.8, 1.2, 0.8] }}
-          transition={{ duration: star.duration, delay: star.delay, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      ))}
-    </div>
   )
 }
