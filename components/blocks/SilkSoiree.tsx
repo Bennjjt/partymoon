@@ -99,7 +99,7 @@ export function SilkSoiree() {
             onClick={() =>
               open({ destination: 'Silk Soiree', date: 'your chosen date', basePrice: '£4,500' })
             }
-            className="inline-flex mt-10 text-[0.65rem] tracking-[0.2em] uppercase px-10 py-4 border rounded-[2px] transition-all"
+            className="inline-flex mt-10 text-[0.65rem] tracking-[0.2em] uppercase font-bold px-10 py-4 border rounded-[2px] transition-all"
             style={{ color: 'var(--pm-silk-red)', borderColor: 'var(--pm-silk-red-dim)' }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = 'var(--pm-silk-btn-hover-bg)'

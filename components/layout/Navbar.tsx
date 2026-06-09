@@ -74,7 +74,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
 
       <a
         href="#book"
-        className="text-[0.65rem] tracking-[0.15em] uppercase px-6 py-[0.7rem] border rounded-[2px] font-medium transition-colors"
+        className="text-[0.65rem] tracking-[0.15em] uppercase font-bold px-6 py-[0.7rem] border rounded-[2px] font-medium transition-colors"
         style={{ borderColor: 'var(--pm-purple)', color: 'var(--pm-purple)' }}
         onMouseEnter={(e) => {
           e.currentTarget.style.background = 'var(--pm-purple)'

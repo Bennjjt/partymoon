@@ -1,3 +1,5 @@
+export const maxDuration = 30
+
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import type { Metadata } from 'next'

@@ -103,7 +103,7 @@ export function WaitlistSection() {
               <button
                 type="submit"
                 disabled={loading}
-                className="px-8 py-4 rounded-[2px] text-[0.65rem] tracking-[0.2em] uppercase transition-opacity disabled:opacity-60"
+                className="px-8 py-4 rounded-[2px] text-[0.65rem] tracking-[0.2em] uppercase font-bold transition-opacity disabled:opacity-60"
                 style={{ background: 'var(--pm-purple)', color: 'var(--pm-midnight)' }}
               >
                 {loading ? 'Joining…' : 'Join the waitlist'}

@@ -1,15 +1,10 @@
 import { getPayload } from 'payload'
 import config from '@payload-config'
-import { appendFileSync } from 'fs'
 import { type Trip, type CoverImage, getGradient } from '@/lib/data/trips'
-
-// #region agent log
-const _dbgLog = (data: object) => { try { appendFileSync('/Users/benjaminthorne/Documents/BEARA/PartyMoon/.cursor/debug-f68b23.log', JSON.stringify({ sessionId: 'f68b23', timestamp: Date.now(), ...data }) + '\n') } catch {} }
-// #endregion
 
 // Wraps a promise with a hard timeout. Rejects with a typed error so
 // callers can distinguish CMS timeout from other failures.
-function withCmsTimeout<T>(promise: Promise<T>, ms = 8_000): Promise<T> {
+function withCmsTimeout<T>(promise: Promise<T>, ms = 25_000): Promise<T> {
   return Promise.race([
     promise,
     new Promise<never>((_, reject) =>
@@ -92,18 +87,8 @@ function toTrip(doc: any): Trip {
 // ── Queries ───────────────────────────────────────────────────────
 
 export async function getPublishedTrips(destSlug?: string): Promise<TripsResult> {
-  // #region agent log
-  const _t0 = Date.now()
-  _dbgLog({ location: 'getPublishedTrips:entry', message: 'called', data: { destSlug }, hypothesisId: 'H-A' })
-  // #endregion
   try {
-    // #region agent log
-    _dbgLog({ location: 'getPublishedTrips:before-getPayload', message: 'calling withCmsTimeout(getPayload)', hypothesisId: 'H-A' })
-    // #endregion
     const payload = await withCmsTimeout(getPayload({ config }))
-    // #region agent log
-    _dbgLog({ location: 'getPublishedTrips:after-getPayload', message: 'getPayload resolved', data: { msElapsed: Date.now() - _t0 }, hypothesisId: 'H-A' })
-    // #endregion
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const where: Record<string, any> = {}
     if (destSlug) where.slug = { equals: destSlug }
@@ -117,30 +102,17 @@ export async function getPublishedTrips(destSlug?: string): Promise<TripsResult>
         overrideAccess: true,
       }),
     )
-    // #region agent log
-    _dbgLog({ location: 'getPublishedTrips:after-find', message: 'find resolved', data: { docCount: docs.length, msTotal: Date.now() - _t0 }, hypothesisId: 'H-A' })
-    // #endregion
     return { status: 'ok', trips: docs.map(toTrip) }
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err)
-    // #region agent log
-    _dbgLog({ location: 'getPublishedTrips:catch', message: 'error caught', data: { error: message, msElapsed: Date.now() - _t0 }, hypothesisId: 'H-A' })
-    // #endregion
     console.error('[CMS] getPublishedTrips failed:', message)
     return { status: 'degraded', error: message }
   }
 }
 
 export async function getTripBySlug(slug: string): Promise<TripResult> {
-  // #region agent log
-  const _tS0 = Date.now()
-  _dbgLog({ location: 'getTripBySlug:entry', message: 'called', data: { slug }, hypothesisId: 'H-A' })
-  // #endregion
   try {
     const payload = await withCmsTimeout(getPayload({ config }))
-    // #region agent log
-    _dbgLog({ location: 'getTripBySlug:after-getPayload', message: 'getPayload resolved', data: { msElapsed: Date.now() - _tS0 }, hypothesisId: 'H-A' })
-    // #endregion
     const { docs } = await withCmsTimeout(
       payload.find({
         collection: 'trips',
@@ -154,9 +126,6 @@ export async function getTripBySlug(slug: string): Promise<TripResult> {
     return { status: 'ok', trip: toTrip(docs[0]) }
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err)
-    // #region agent log
-    _dbgLog({ location: 'getTripBySlug:catch', message: 'error caught', data: { error: message, msElapsed: Date.now() - _tS0, slug }, hypothesisId: 'H-A' })
-    // #endregion
     console.error('[CMS] getTripBySlug failed for slug "%s":', slug, message)
     return { status: 'degraded', error: message }
   }

@@ -133,7 +133,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
         <div className="min-h-6 mb-3">
           {pkg.badge && (
             <span
-              className="text-[0.55rem] tracking-[0.2em] uppercase px-3 py-1 rounded-[2px]"
+              className="text-[0.55rem] tracking-[0.2em] uppercase font-bold px-3 py-1 rounded-[2px]"
               style={{ background: 'var(--pm-purple)', color: 'var(--pm-midnight)' }}
             >
               {pkg.badge}
@@ -170,7 +170,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
       <div className="p-6 pt-0">
         <a
           href="#trips"
-          className="block text-center text-[0.6rem] tracking-[0.2em] uppercase py-[0.9rem] border rounded-[2px] transition-colors"
+          className="block text-center text-[0.6rem] tracking-[0.2em] uppercase font-bold py-[0.9rem] border rounded-[2px] transition-colors"
           style={{
             background: pkg.featured ? 'var(--pm-purple)' : 'transparent',
             borderColor: pkg.featured ? 'var(--pm-purple)' : 'var(--pm-glass-border)',

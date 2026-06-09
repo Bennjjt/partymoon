@@ -90,7 +90,7 @@ export function Hero() {
       >
         <a
           href="#trips"
-          className="text-[0.65rem] tracking-[0.2em] uppercase px-10 py-4 rounded-[2px] border transition-colors"
+          className="text-[0.65rem] tracking-[0.2em] uppercase font-bold px-10 py-4 rounded-[2px] border transition-colors"
           style={{
             background: 'var(--pm-purple)',
             borderColor: 'var(--pm-purple)',
@@ -103,7 +103,7 @@ export function Hero() {
         </a>
         <a
           href="#silk"
-          className="text-[0.65rem] tracking-[0.2em] uppercase px-10 py-4 rounded-[2px] border transition-colors text-pm-gold"
+          className="text-[0.65rem] tracking-[0.2em] uppercase font-bold px-10 py-4 rounded-[2px] border transition-colors text-pm-gold"
           style={{ borderColor: 'var(--pm-gold-dim)' }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'rgba(var(--pm-gold-rgb, 242,216,120),0.08)'

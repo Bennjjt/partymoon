@@ -20,7 +20,7 @@ export function TripReserveButton({ tripId, destination, date, priceFrom, varian
   return (
     <button
       onClick={() => open({ tripId, destination, date, basePrice: priceFrom })}
-      className="text-[0.65rem] tracking-[0.2em] uppercase px-8 py-3 rounded-[2px] border transition-colors font-medium"
+      className="text-[0.65rem] tracking-[0.2em] uppercase font-bold px-8 py-3 rounded-[2px] border transition-colors font-medium"
       style={{
         background:   isSolid ? 'var(--pm-purple)' : 'transparent',
         borderColor:  'var(--pm-purple)',

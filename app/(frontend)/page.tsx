@@ -1,3 +1,6 @@
+// Allow up to 30 s for the Neon DB to wake from cold/idle before timing out.
+export const maxDuration = 30
+
 import { Suspense } from 'react'
 import { DestinationStrip } from '@/components/blocks/DestinationStrip'
 import { Hero } from '@/components/blocks/Hero'

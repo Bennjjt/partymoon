@@ -81,7 +81,7 @@ export function TripCard({ trip }: { trip: Trip }) {
         <div className="flex gap-2 mt-4">
           <Link
             href={`/${trip.slug}`}
-            className="flex-1 text-center text-[0.6rem] tracking-[0.2em] uppercase py-3 border text-white rounded-[2px] transition-colors hover:border-white/40"
+            className="flex-1 text-center text-[0.6rem] tracking-[0.2em] uppercase font-bold py-3 border text-white rounded-[2px] transition-colors hover:border-white/40"
             style={{ borderColor: 'var(--pm-glass-border)' }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -92,7 +92,7 @@ export function TripCard({ trip }: { trip: Trip }) {
             <a
               href="#waitlist"
               onClick={(e) => e.stopPropagation()}
-              className="flex-1 text-center text-[0.6rem] tracking-[0.2em] uppercase py-3 border text-white rounded-[2px] transition-colors hover:border-white/40"
+              className="flex-1 text-center text-[0.6rem] tracking-[0.2em] uppercase font-bold py-3 border text-white rounded-[2px] transition-colors hover:border-white/40"
               style={{ borderColor: 'var(--pm-glass-border)' }}
             >
               Join waitlist
@@ -100,7 +100,7 @@ export function TripCard({ trip }: { trip: Trip }) {
           ) : (
             <button
               onClick={handleBook}
-              className="flex-1 text-center text-[0.6rem] tracking-[0.2em] uppercase py-3 rounded-[2px] border transition-colors"
+              className="flex-1 text-center text-[0.6rem] tracking-[0.2em] uppercase font-bold py-3 rounded-[2px] border transition-colors"
               style={{ background: 'var(--pm-purple)', borderColor: 'var(--pm-purple)', color: 'var(--pm-midnight)' }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.background = 'transparent'
@@ -166,7 +166,7 @@ function DestLabel({ destination }: { destination: string }) {
 function SpotsBadge({ isSoldOut, spotsLeft }: { isSoldOut: boolean; spotsLeft: number }) {
   return (
     <div
-      className="absolute top-4 right-4 z-10 text-[0.6rem] tracking-[0.15em] uppercase px-3 py-[0.4rem] rounded-[2px]"
+      className="absolute top-4 right-4 z-10 text-[0.6rem] tracking-[0.15em] uppercase font-bold px-3 py-[0.4rem] rounded-[2px]"
       style={isSoldOut
         ? { background: 'rgba(80,20,20,0.8)', color: '#f09595' }
         : { background: 'rgba(var(--pm-purple-rgb),0.8)', color: '#fff' }}

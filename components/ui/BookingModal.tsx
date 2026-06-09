@@ -573,7 +573,7 @@ function SuccessStep({
         <p>Balance due 8 weeks before travel. We&apos;ll send a reminder.</p>
       </div>
 
-      <button onClick={onClose} className="text-[0.65rem] tracking-[0.2em] uppercase px-8 py-3 border text-white rounded-[2px] transition-colors hover:border-white/40"
+      <button onClick={onClose} className="text-[0.65rem] tracking-[0.2em] uppercase font-bold px-8 py-3 border text-white rounded-[2px] transition-colors hover:border-white/40"
         style={{ borderColor: 'var(--pm-glass-border)' }}>
         Close
       </button>
