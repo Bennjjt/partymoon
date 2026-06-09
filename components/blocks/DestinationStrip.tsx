@@ -139,12 +139,12 @@ function DestPill({
       className="flex items-center gap-3 px-4 py-[0.55rem] border rounded-[2px] cursor-pointer whitespace-nowrap"
       style={{
         borderColor: active ? 'var(--pm-purple)' : 'var(--pm-glass-border)',
-        background: active ? 'rgba(107,95,204,0.1)' : 'transparent',
+        background: active ? 'rgba(var(--pm-purple-rgb),0.1)' : 'transparent',
       }}
       whileHover={
         active
-          ? { borderColor: 'var(--pm-purple)', background: 'rgba(107,95,204,0.18)' }
-          : { borderColor: 'rgba(155,143,237,0.6)', background: 'rgba(107,95,204,0.07)' }
+          ? { borderColor: 'var(--pm-purple)', background: 'rgba(var(--pm-purple-rgb),0.18)' }
+          : { borderColor: 'rgba(155,143,237,0.6)', background: 'rgba(var(--pm-purple-rgb),0.07)' }
       }
       transition={{ duration: 0.18, ease: 'easeOut' }}
     >

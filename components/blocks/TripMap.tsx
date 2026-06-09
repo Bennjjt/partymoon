@@ -9,8 +9,7 @@ const TILE_URL = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
 const ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
 
-// Partymoon crescent-moon pin —
-// Purple teardrop with the PM crescent (light circle + dark bite)
+// Partymoon crescent-moon pin — gold teardrop with crescent cutout
 const PIN_SVG = `
 <svg width="40" height="52" viewBox="0 0 40 52" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -21,18 +20,18 @@ const PIN_SVG = `
   <!-- Teardrop body -->
   <path
     d="M20 1C9.5 1 1 9.5 1 20C1 32.5 20 51 20 51C20 51 39 32.5 39 20C39 9.5 30.5 1 20 1Z"
-    fill="#6B5FCC"
+    fill="#c9a84c"
     filter="url(#pm-pin-shadow)"
   />
   <!-- Subtle inner highlight ring -->
   <path
     d="M20 3C10.6 3 3 10.6 3 20C3 31.8 20 49 20 49C20 49 37 31.8 37 20C37 10.6 29.4 3 20 3Z"
-    fill="none" stroke="rgba(221,208,255,0.25)" stroke-width="1"
+    fill="none" stroke="rgba(255,240,180,0.25)" stroke-width="1"
   />
   <!-- Full moon (light) -->
-  <circle cx="17" cy="20" r="9.5" fill="#ddd0ff"/>
+  <circle cx="17" cy="20" r="9.5" fill="#ffffff"/>
   <!-- Bite (same colour as pin) to carve the crescent -->
-  <circle cx="23" cy="16" r="7.5" fill="#6B5FCC"/>
+  <circle cx="23" cy="16" r="7.5" fill="#c9a84c"/>
 </svg>
 `
 

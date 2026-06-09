@@ -126,7 +126,7 @@ function PackageCard({ pkg }: { pkg: Package }) {
         className="px-6 py-8 text-center"
         style={{
           background: pkg.featured
-            ? 'linear-gradient(135deg, var(--pm-navy), rgba(107,95,204,0.3))'
+            ? 'linear-gradient(135deg, var(--pm-navy), rgba(var(--pm-purple-rgb),0.3))'
             : 'var(--pm-navy)',
         }}
       >

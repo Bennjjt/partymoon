@@ -97,19 +97,19 @@ export default async function TripDetailPage({ params }: Props) {
           <section
             style={{
               background: 'var(--pm-deep)',
-              borderTop: '1px solid rgba(107,95,204,0.15)',
-              borderBottom: '1px solid rgba(107,95,204,0.15)',
+              borderTop: '1px solid rgba(var(--pm-purple-rgb),0.15)',
+              borderBottom: '1px solid rgba(var(--pm-purple-rgb),0.15)',
               position: 'relative',
               zIndex: 2,
             }}
           >
             <div className="px-6 md:px-12 py-24">
               <RevealOnScroll>
-                <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: '#FF2D78' }}>Hour by Hour</p>
+                <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: 'var(--pm-accent)' }}>Hour by Hour</p>
                 <h2 className="font-heading font-light text-white mb-3" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: 0.95 }}>
                   YOUR WEEKEND.<br /><em className="italic" style={{ color: 'var(--pm-purple-light)', fontSize: '0.75em' }}>laid out.</em>
                 </h2>
-                <div className="w-16 h-[3px] mb-10" style={{ background: 'linear-gradient(to right, #FF2D78, var(--pm-purple))' }} />
+                <div className="w-16 h-[3px] mb-10" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-purple))' }} />
               </RevealOnScroll>
 
               <ol className="space-y-0">
@@ -117,20 +117,20 @@ export default async function TripDetailPage({ params }: Props) {
                   <li
                     key={item.id ?? item.day}
                     className="grid"
-                    style={{ gridTemplateColumns: '110px 1fr', borderBottom: i < trip.itinerary!.length - 1 ? '1px solid rgba(107,95,204,0.1)' : 'none' }}
+                    style={{ gridTemplateColumns: '110px 1fr', borderBottom: i < trip.itinerary!.length - 1 ? '1px solid rgba(var(--pm-purple-rgb),0.1)' : 'none' }}
                   >
                     {/* Left */}
-                    <div className="flex flex-col items-center gap-2 py-8 px-4" style={{ borderRight: '1px solid rgba(107,95,204,0.15)' }}>
-                      <p className="font-heading text-[2.5rem] leading-none" style={{ color: 'rgba(107,95,204,0.2)' }}>
+                    <div className="flex flex-col items-center gap-2 py-8 px-4" style={{ borderRight: '1px solid rgba(var(--pm-purple-rgb),0.15)' }}>
+                      <p className="font-heading text-[2.5rem] leading-none" style={{ color: 'rgba(var(--pm-purple-rgb),0.2)' }}>
                         {String(item.day).padStart(2, '0')}
                       </p>
                       <div className="size-2 rounded-full" style={{ background: 'var(--pm-purple)', boxShadow: '0 0 8px var(--pm-purple)' }} />
-                      <div className="flex-1 w-px" style={{ background: 'linear-gradient(to bottom, rgba(107,95,204,0.4), transparent)', minHeight: '30px' }} />
+                      <div className="flex-1 w-px" style={{ background: 'linear-gradient(to bottom, rgba(var(--pm-purple-rgb),0.4), transparent)', minHeight: '30px' }} />
                     </div>
                     {/* Right */}
                     <RevealOnScroll delay={i * 0.04} className="py-8 px-8 md:px-10">
                       {item.tag && (
-                        <p className="text-[0.6rem] tracking-[0.4em] uppercase font-medium mb-2" style={{ color: '#FF2D78' }}>{item.tag}</p>
+                        <p className="text-[0.6rem] tracking-[0.4em] uppercase font-medium mb-2" style={{ color: 'var(--pm-accent)' }}>{item.tag}</p>
                       )}
                       <p className="font-heading text-[1.4rem] md:text-[1.7rem] leading-tight text-white mb-2">{item.title}</p>
                       {item.description && (
@@ -263,7 +263,7 @@ function TripPageSkeleton() {
           <div className="h-14 w-3/4 rounded" style={{ background: 'rgba(255,255,255,0.08)' }} />
           <div className="h-5 w-1/2 rounded" style={{ background: 'rgba(255,255,255,0.06)' }} />
           <div className="flex gap-3 pt-4">
-            <div className="h-12 w-36 rounded-[2px]" style={{ background: 'rgba(107,95,204,0.3)' }} />
+            <div className="h-12 w-36 rounded-[2px]" style={{ background: 'rgba(var(--pm-purple-rgb),0.3)' }} />
             <div className="h-12 w-36 rounded-[2px]" style={{ background: 'rgba(255,255,255,0.06)' }} />
           </div>
         </div>
@@ -282,7 +282,7 @@ function TripPageSkeleton() {
         {/* Degraded notice */}
         <div
           className="mt-12 rounded-[2px] border p-8 text-center"
-          style={{ borderColor: 'rgba(107,95,204,0.25)', background: 'rgba(107,95,204,0.05)' }}
+          style={{ borderColor: 'rgba(var(--pm-purple-rgb),0.25)', background: 'rgba(var(--pm-purple-rgb),0.05)' }}
         >
           <p className="text-[0.6rem] tracking-[0.35em] uppercase mb-3" style={{ color: 'var(--pm-purple-light)' }}>
             Content loading

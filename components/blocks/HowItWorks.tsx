@@ -50,7 +50,7 @@ export function HowItWorks() {
           <RevealOnScroll key={num} delay={i * 0.1} className="text-center">
             <p
               className="font-heading text-[4rem] font-light leading-none mb-4"
-              style={{ color: 'rgba(107,95,204,0.3)' }}
+              style={{ color: 'rgba(var(--pm-purple-rgb),0.3)' }}
             >
               {num}
             </p>

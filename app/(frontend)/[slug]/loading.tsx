@@ -14,7 +14,7 @@ export default function TripLoading() {
           <div className="h-14 w-3/4 rounded" style={{ background: 'rgba(255,255,255,0.08)' }} />
           <div className="h-5 w-1/2 rounded" style={{ background: 'rgba(255,255,255,0.06)' }} />
           <div className="flex gap-3 pt-4">
-            <div className="h-12 w-36 rounded-[2px]" style={{ background: 'rgba(107,95,204,0.3)' }} />
+            <div className="h-12 w-36 rounded-[2px]" style={{ background: 'rgba(var(--pm-purple-rgb),0.3)' }} />
             <div className="h-12 w-36 rounded-[2px]" style={{ background: 'rgba(255,255,255,0.06)' }} />
           </div>
         </div>

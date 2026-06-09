@@ -18,7 +18,7 @@ export function TripTicker({ destination, inclusions }: TripTickerProps) {
   return (
     <div
       className="overflow-hidden py-4 relative z-10"
-      style={{ background: 'linear-gradient(90deg, var(--pm-purple), #9D4EDD, #FF2D78, #9D4EDD, var(--pm-purple))' }}
+      style={{ background: 'linear-gradient(90deg, var(--pm-gold-dim), var(--pm-purple), var(--pm-gold), var(--pm-purple), var(--pm-gold-dim))' }}
     >
       <div
         className="flex gap-0 whitespace-nowrap"

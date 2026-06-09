@@ -469,7 +469,7 @@ function CardStep({ clientSecret, form, totalDeposit, onSuccess, onBack }: CardS
     <form onSubmit={handleSubmit} className="space-y-6">
       <div
         className="rounded-[2px] p-4"
-        style={{ background: 'rgba(107,95,204,0.07)', border: '1px solid rgba(107,95,204,0.2)' }}
+        style={{ background: 'rgba(var(--pm-purple-rgb),0.07)', border: '1px solid rgba(var(--pm-purple-rgb),0.2)' }}
       >
         <p className="text-[0.6rem] tracking-[0.15em] uppercase mb-1" style={{ color: 'var(--pm-purple-light)' }}>
           Amount to charge today
@@ -546,7 +546,7 @@ function SuccessStep({
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.4, ease: 'easeOut' }}
         className="mx-auto flex size-16 items-center justify-center rounded-full"
-        style={{ background: 'rgba(107,95,204,0.15)', border: '1px solid var(--pm-purple)' }}
+        style={{ background: 'rgba(var(--pm-purple-rgb),0.15)', border: '1px solid var(--pm-purple)' }}
       >
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
           stroke="var(--pm-purple-light)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -587,7 +587,7 @@ function DepositBox({
   totalDeposit, partySize, balancePerPerson,
 }: { totalDeposit: number; partySize: number; balancePerPerson: number }) {
   return (
-    <div className="rounded-[2px] p-4" style={{ background: 'rgba(107,95,204,0.08)', border: '1px solid rgba(107,95,204,0.25)' }}>
+    <div className="rounded-[2px] p-4" style={{ background: 'rgba(var(--pm-purple-rgb),0.08)', border: '1px solid rgba(var(--pm-purple-rgb),0.25)' }}>
       <p className="text-[0.6rem] tracking-[0.15em] uppercase mb-1" style={{ color: 'var(--pm-purple-light)' }}>
         Reservation deposit today
       </p>

@@ -14,7 +14,7 @@ export default function HomeLoading() {
           <div className="h-16 w-2/3 rounded" style={{ background: 'rgba(255,255,255,0.07)' }} />
           <div className="h-4 w-1/2 rounded" style={{ background: 'rgba(255,255,255,0.05)' }} />
           <div className="flex gap-3 pt-2">
-            <div className="h-12 w-40 rounded-[2px]" style={{ background: 'rgba(107,95,204,0.25)' }} />
+            <div className="h-12 w-40 rounded-[2px]" style={{ background: 'rgba(var(--pm-purple-rgb),0.25)' }} />
             <div className="h-12 w-40 rounded-[2px]" style={{ background: 'rgba(255,255,255,0.05)' }} />
           </div>
         </div>

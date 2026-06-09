@@ -40,8 +40,8 @@ export function SilkSoiree() {
     <section
       className="px-6 md:px-12 py-24 border-y"
       style={{
-        background: 'linear-gradient(135deg, #0d0a05 0%, #1a1008 50%, #0d0a05 100%)',
-        borderColor: 'rgba(232,201,122,0.15)',
+        background: 'var(--pm-silk-bg)',
+        borderColor: 'var(--pm-silk-border)',
       }}
       id="silk"
     >
@@ -55,19 +55,19 @@ export function SilkSoiree() {
         >
           <p
             className="text-[0.6rem] tracking-[0.35em] uppercase mb-3"
-            style={{ color: 'var(--pm-gold-dim)' }}
+            style={{ color: 'var(--pm-silk-red-dim)' }}
           >
             A Partymoon experience
           </p>
           <h2
             className="font-heading font-light italic leading-[1.2] mb-6"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--pm-gold)' }}
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--pm-silk-red)' }}
           >
             Silk Soiree
           </h2>
           <p
             className="text-[0.75rem] tracking-[0.08em] leading-[2] max-w-[500px]"
-            style={{ color: 'rgba(232,201,122,0.5)' }}
+            style={{ color: 'rgba(255,255,255,0.55)' }}
           >
             Exclusively for professional women. You spend your working life organising everything for
             everyone else. This weekend, let us handle every single detail — you simply arrive and enjoy
@@ -79,15 +79,15 @@ export function SilkSoiree() {
               <li
                 key={f}
                 className="flex gap-4 items-start px-4 py-4 border rounded-[2px]"
-                style={{ borderColor: 'rgba(232,201,122,0.1)' }}
+                style={{ borderColor: 'var(--pm-silk-card-border)' }}
               >
                 <span
                   className="size-[5px] rounded-full flex-shrink-0 mt-[6px]"
-                  style={{ background: 'var(--pm-gold)' }}
+                  style={{ background: 'var(--pm-silk-red)' }}
                 />
                 <span
                   className="text-[0.7rem] tracking-[0.05em] leading-[1.8]"
-                  style={{ color: 'rgba(232,201,122,0.6)' }}
+                  style={{ color: 'rgba(255,255,255,0.60)' }}
                 >
                   {f}
                 </span>
@@ -100,14 +100,14 @@ export function SilkSoiree() {
               open({ destination: 'Silk Soiree', date: 'your chosen date', basePrice: '£4,500' })
             }
             className="inline-flex mt-10 text-[0.65rem] tracking-[0.2em] uppercase px-10 py-4 border rounded-[2px] transition-all"
-            style={{ color: 'var(--pm-gold)', borderColor: 'var(--pm-gold-dim)' }}
+            style={{ color: 'var(--pm-silk-red)', borderColor: 'var(--pm-silk-red-dim)' }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(232,201,122,0.08)'
-              e.currentTarget.style.borderColor = 'var(--pm-gold)'
+              e.currentTarget.style.background = 'var(--pm-silk-btn-hover-bg)'
+              e.currentTarget.style.borderColor = 'var(--pm-silk-red)'
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = 'transparent'
-              e.currentTarget.style.borderColor = 'var(--pm-gold-dim)'
+              e.currentTarget.style.borderColor = 'var(--pm-silk-red-dim)'
             }}
           >
             Discover Silk Soiree
@@ -126,20 +126,20 @@ export function SilkSoiree() {
             <div
               key={name}
               className="px-6 py-5 border rounded-[2px] transition-all cursor-pointer"
-              style={{ borderColor: 'rgba(232,201,122,0.1)' }}
+              style={{ borderColor: 'var(--pm-silk-card-border)' }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(232,201,122,0.3)'
-                e.currentTarget.style.background = 'rgba(232,201,122,0.03)'
+                e.currentTarget.style.borderColor = 'var(--pm-silk-card-border-hover)'
+                e.currentTarget.style.background = 'var(--pm-silk-card-hover-bg)'
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(232,201,122,0.1)'
+                e.currentTarget.style.borderColor = 'var(--pm-silk-card-border)'
                 e.currentTarget.style.background = 'transparent'
               }}
             >
               <div className="flex items-center justify-between mb-2">
                 <span
                   className="font-heading text-[1.3rem] font-light"
-                  style={{ color: 'var(--pm-gold)' }}
+                  style={{ color: 'var(--pm-silk-red)' }}
                 >
                   {name}
                 </span>
@@ -147,7 +147,7 @@ export function SilkSoiree() {
               </div>
               <p
                 className="text-[0.65rem] tracking-[0.08em] leading-[1.8]"
-                style={{ color: 'rgba(232,201,122,0.4)' }}
+                style={{ color: 'rgba(255,255,255,0.45)' }}
               >
                 {desc}
               </p>

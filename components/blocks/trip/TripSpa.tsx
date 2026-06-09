@@ -13,7 +13,7 @@ export function TripSpa({ spa }: TripSpaProps) {
       <div className="px-6 md:px-12 py-24">
         <RevealOnScroll>
           {spa.eyebrow && (
-            <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: '#FF2D78' }}>{spa.eyebrow}</p>
+            <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: 'var(--pm-accent)' }}>{spa.eyebrow}</p>
           )}
           {spa.heading && (
             <h2 className="font-heading font-light text-white mb-1" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: 0.95 }}>
@@ -25,16 +25,16 @@ export function TripSpa({ spa }: TripSpaProps) {
               {spa.subheading}
             </p>
           )}
-          <div className="w-16 h-[3px] mb-8" style={{ background: 'linear-gradient(to right, #FF2D78, var(--pm-purple))' }} />
+          <div className="w-16 h-[3px] mb-8" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-purple))' }} />
         </RevealOnScroll>
 
         <RevealOnScroll delay={0.1}>
           <div
             className="p-10 relative overflow-hidden"
-            style={{ background: 'var(--pm-navy)', border: '1px solid rgba(107,95,204,0.2)' }}
+            style={{ background: 'var(--pm-navy)', border: '1px solid rgba(var(--pm-purple-rgb),0.2)' }}
           >
             {/* Decorative crescent */}
-            <span className="absolute right-[-1rem] top-[-1rem] text-[12rem] leading-none pointer-events-none select-none" style={{ color: 'rgba(107,95,204,0.04)' }}>◑</span>
+            <span className="absolute right-[-1rem] top-[-1rem] text-[12rem] leading-none pointer-events-none select-none" style={{ color: 'rgba(var(--pm-purple-rgb),0.04)' }}>◑</span>
 
             {spa.description && (
               <p className="text-[0.95rem] leading-[2] font-light max-w-2xl mb-8" style={{ color: 'rgba(232,232,240,0.65)' }}>

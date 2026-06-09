@@ -14,8 +14,8 @@ export function TripCTA({ tripId, destination, date, priceFrom, deposit }: TripC
     <div
       className="relative overflow-hidden text-center py-36 px-6"
       style={{
-        background: 'radial-gradient(ellipse at 30% 50%, rgba(107,95,204,0.18) 0%, transparent 55%), radial-gradient(ellipse at 80% 30%, rgba(255,45,120,0.08) 0%, transparent 45%), var(--pm-midnight)',
-        borderTop: '1px solid rgba(107,95,204,0.15)',
+        background: 'radial-gradient(ellipse at 30% 50%, rgba(var(--pm-purple-rgb),0.18) 0%, transparent 55%), radial-gradient(ellipse at 80% 30%, rgba(var(--pm-accent-rgb),0.08) 0%, transparent 45%), var(--pm-midnight)',
+        borderTop: '1px solid rgba(var(--pm-purple-rgb),0.15)',
         position: 'relative',
         zIndex: 2,
       }}
@@ -23,20 +23,20 @@ export function TripCTA({ tripId, destination, date, priceFrom, deposit }: TripC
       {/* Background destination name */}
       <span
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-heading whitespace-nowrap pointer-events-none select-none"
-        style={{ fontSize: 'clamp(5rem, 16vw, 14rem)', color: 'rgba(107,95,204,0.04)', letterSpacing: '0.1em' }}
+        style={{ fontSize: 'clamp(5rem, 16vw, 14rem)', color: 'rgba(var(--pm-purple-rgb),0.04)', letterSpacing: '0.1em' }}
       >
         {destination.toUpperCase()}
       </span>
 
       <div className="relative">
-        <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-6" style={{ color: '#FF2D78' }}>
+        <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-6" style={{ color: 'var(--pm-accent)' }}>
           Don&rsquo;t Miss Out
         </p>
 
         <h2 className="font-heading font-light text-white leading-none mb-2" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}>
           GET YOUR SPOT
         </h2>
-        <p className="font-heading font-light mb-8" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', color: '#FF2D78', lineHeight: 1, filter: 'drop-shadow(0 0 20px rgba(255,45,120,0.4))' }}>
+        <p className="font-heading font-light mb-8" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', color: 'var(--pm-accent)', lineHeight: 1, filter: 'drop-shadow(0 0 20px rgba(var(--pm-accent-rgb),0.4))' }}>
           IN {destination.toUpperCase()}.
         </p>
 
@@ -62,7 +62,7 @@ export function TripCTA({ tripId, destination, date, priceFrom, deposit }: TripC
           />
         </div>
 
-        <p className="text-[0.65rem] tracking-[0.2em] uppercase font-light" style={{ color: 'rgba(157,78,221,0.4)' }}>
+        <p className="text-[0.65rem] tracking-[0.2em] uppercase font-light" style={{ color: 'rgba(var(--pm-purple-rgb),0.4)' }}>
           Fully inclusive · Small group · Two dedicated hosts · Always VIP
         </p>
       </div>

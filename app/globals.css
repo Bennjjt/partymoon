@@ -59,51 +59,51 @@
   --color-pm-cream:        var(--pm-cream);
 }
 
-/* ── Shadcn tokens remapped to the dark luxury palette ─────────── */
+/* ── Shadcn tokens remapped to the black / gold luxury palette ──── */
 :root {
-  --background:           #0f0f1e;
+  --background:           #080808;
   --foreground:           #ffffff;
-  --card:                 #161628;
+  --card:                 #0f0f0f;
   --card-foreground:      #ffffff;
-  --popover:              #161628;
+  --popover:              #0f0f0f;
   --popover-foreground:   #ffffff;
-  --primary:              #6B5FCC;
-  --primary-foreground:   #ffffff;
-  --secondary:            #1e1e38;
+  --primary:              #c9a84c;
+  --primary-foreground:   #080808;
+  --secondary:            #1a1a1a;
   --secondary-foreground: #ffffff;
-  --muted:                #1e1e38;
-  --muted-foreground:     #9B8FED;
-  --accent:               #1e1e38;
+  --muted:                #1a1a1a;
+  --muted-foreground:     #f0d080;
+  --accent:               #1a1a1a;
   --accent-foreground:    #ffffff;
   --destructive:          oklch(0.577 0.245 27.325);
   --border:               rgba(255, 255, 255, 0.14);
   --input:                rgba(255, 255, 255, 0.15);
-  --ring:                 #6B5FCC;
-  --chart-1:              #9B8FED;
-  --chart-2:              #6B5FCC;
-  --chart-3:              #ddd0ff;
+  --ring:                 #c9a84c;
+  --chart-1:              #f0d080;
+  --chart-2:              #c9a84c;
+  --chart-3:              #ffffff;
   --chart-4:              #f2d878;
   --chart-5:              #c9a84c;
   --radius:               0.125rem;
-  --sidebar:              #161628;
+  --sidebar:              #0f0f0f;
   --sidebar-foreground:   #ffffff;
-  --sidebar-primary:      #6B5FCC;
-  --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent:       #1e1e38;
+  --sidebar-primary:      #c9a84c;
+  --sidebar-primary-foreground: #080808;
+  --sidebar-accent:       #1a1a1a;
   --sidebar-accent-foreground:  #ffffff;
   --sidebar-border:       rgba(255, 255, 255, 0.14);
-  --sidebar-ring:         #6B5FCC;
+  --sidebar-ring:         #c9a84c;
 }
 
 /* Dark class kept for Payload admin compatibility — not applied on frontend */
 .dark {
-  --background:           #0a0a14;
+  --background:           #050505;
   --foreground:           #ffffff;
-  --card:                 #0f0f1e;
+  --card:                 #080808;
   --card-foreground:      #ffffff;
-  --primary:              #9B8FED;
-  --primary-foreground:   #0f0f1e;
-  --muted-foreground:     #b8aee0;
+  --primary:              #f2d878;
+  --primary-foreground:   #080808;
+  --muted-foreground:     #c9a84c;
   --border:               rgba(255, 255, 255, 0.1);
 }
 

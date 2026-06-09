@@ -1,29 +1,45 @@
 /*
  * PartyMoon design tokens
- * Extracted from the agreed client design (partymoon.html).
+ * Primary palette: black, white, gold.
+ * Silk Soiree section has its own red/black tokens below.
  * Components reference these variables — edit here to retheme the entire UI.
  */
 
 :root {
   /* ── Palette ────────────────────────────────────────────────────── */
-  --pm-midnight:      #0f0f1e;   /* page background                   */
-  --pm-deep:          #161628;   /* card / panel surface              */
-  --pm-navy:          #1e1e38;   /* input / elevated surface          */
+  --pm-midnight:      #080808;   /* page background                   */
+  --pm-deep:          #0f0f0f;   /* card / panel surface              */
+  --pm-navy:          #1a1a1a;   /* input / elevated surface          */
 
-  --pm-purple:        #6B5FCC;   /* primary accent                    */
-  --pm-purple-light:  #9B8FED;   /* eyebrows, muted labels            */
+  --pm-purple:        #c9a84c;   /* primary accent — gold             */
+  --pm-purple-light:  #f0d080;   /* eyebrows, muted labels — pale gold */
+  --pm-purple-rgb:    201, 168, 76; /* channels for rgba() composition */
 
-  --pm-moon:          #ddd0ff;   /* logo wordmark, star particles     */
-  --pm-moon-dim:      #b8aee0;
+  --pm-moon:          #ffffff;   /* logo wordmark                     */
+  --pm-moon-dim:      #d0d0d0;
 
-  --pm-gold:          #f2d878;   /* Silk Soiree accent                */
-  --pm-gold-dim:      #c9a84c;
+  --pm-gold:          #f2d878;   /* bright gold — decorative, stars   */
+  --pm-gold-dim:      #c9a84c;   /* rich gold — same as primary accent */
 
   --pm-cream:         #ffffff;   /* primary text on dark surfaces     */
+
+  --pm-accent:        #c9a84c;   /* section eyebrows / gradient accent */
+  --pm-accent-rgb:    201, 168, 76;
 
   /* Glass / translucent surfaces */
   --pm-glass:         rgba(255, 255, 255, 0.07);
   --pm-glass-border:  rgba(255, 255, 255, 0.14);
+
+  /* ── Silk Soiree section ────────────────────────────────────────── */
+  --pm-silk-bg:            linear-gradient(135deg, #0a0000 0%, #160000 50%, #0a0000 100%);
+  --pm-silk-red:           #cc2222;
+  --pm-silk-red-dim:       #8b1212;
+  --pm-silk-red-rgb:       204, 34, 34;
+  --pm-silk-border:        rgba(204, 34, 34, 0.18);
+  --pm-silk-card-border:   rgba(255, 255, 255, 0.08);
+  --pm-silk-card-border-hover: rgba(204, 34, 34, 0.35);
+  --pm-silk-card-hover-bg: rgba(204, 34, 34, 0.05);
+  --pm-silk-btn-hover-bg:  rgba(204, 34, 34, 0.10);
 
   /* ── Typography ────────────────────────────────────────────────── */
   --pm-font-heading:  var(--font-cormorant);   /* Cormorant Garamond  */

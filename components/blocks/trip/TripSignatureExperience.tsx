@@ -18,9 +18,9 @@ export function TripSignatureExperience({ experience }: TripSignatureExperienceP
   return (
     <div
       style={{
-        background: 'radial-gradient(ellipse at center bottom, rgba(107,95,204,0.08) 0%, transparent 60%), var(--pm-midnight)',
-        borderTop: '1px solid rgba(107,95,204,0.1)',
-        borderBottom: '1px solid rgba(107,95,204,0.1)',
+        background: 'radial-gradient(ellipse at center bottom, rgba(var(--pm-purple-rgb),0.08) 0%, transparent 60%), var(--pm-midnight)',
+        borderTop: '1px solid rgba(var(--pm-purple-rgb),0.1)',
+        borderBottom: '1px solid rgba(var(--pm-purple-rgb),0.1)',
         position: 'relative',
         zIndex: 2,
       }}
@@ -30,7 +30,7 @@ export function TripSignatureExperience({ experience }: TripSignatureExperienceP
           {/* Left: text */}
           <RevealOnScroll>
             {experience.eyebrow && (
-              <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: '#FF2D78' }}>
+              <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: 'var(--pm-accent)' }}>
                 {experience.eyebrow}
               </p>
             )}
@@ -39,7 +39,7 @@ export function TripSignatureExperience({ experience }: TripSignatureExperienceP
                 {experience.heading}
               </h2>
             )}
-            <div className="w-16 h-[3px] mb-6" style={{ background: 'linear-gradient(to right, #FF2D78, var(--pm-purple))' }} />
+            <div className="w-16 h-[3px] mb-6" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-purple))' }} />
             <div className="space-y-4 max-w-xl">
               {paragraphs.map((para, i) => (
                 <p key={i} className="text-[0.9rem] leading-[1.9] font-light" style={{ color: 'rgba(232,232,240,0.65)' }}>
@@ -52,18 +52,18 @@ export function TripSignatureExperience({ experience }: TripSignatureExperienceP
           {/* Right: stats panel */}
           {experience.stats && experience.stats.length > 0 && (
             <RevealOnScroll delay={0.15}>
-              <div style={{ border: '1px solid rgba(107,95,204,0.15)' }}>
+              <div style={{ border: '1px solid rgba(var(--pm-purple-rgb),0.15)' }}>
                 {experience.stats.map((stat, i) => (
                   <div
                     key={stat.id ?? i}
                     className="grid items-center gap-4 px-6 py-5"
                     style={{
-                      borderBottom: i < experience.stats!.length - 1 ? '1px solid rgba(107,95,204,0.1)' : 'none',
+                      borderBottom: i < experience.stats!.length - 1 ? '1px solid rgba(var(--pm-purple-rgb),0.1)' : 'none',
                       gridTemplateColumns: '1fr auto',
                     }}
                   >
                     <div>
-                      <p className="text-[0.6rem] tracking-[0.35em] uppercase mb-1 font-medium" style={{ color: 'rgba(157,78,221,0.6)' }}>
+                      <p className="text-[0.6rem] tracking-[0.35em] uppercase mb-1 font-medium" style={{ color: 'rgba(var(--pm-purple-rgb),0.6)' }}>
                         {stat.label}
                       </p>
                       <p className="text-[0.9rem] font-light" style={{ color: 'rgba(232,232,240,0.7)' }}>{stat.value}</p>
@@ -71,7 +71,7 @@ export function TripSignatureExperience({ experience }: TripSignatureExperienceP
                     {stat.tag && (
                       <span
                         className="text-[0.55rem] tracking-[0.2em] uppercase px-3 py-1 rounded-full whitespace-nowrap font-medium"
-                        style={{ background: 'rgba(107,95,204,0.15)', color: 'var(--pm-purple)', border: '1px solid rgba(107,95,204,0.3)' }}
+                        style={{ background: 'rgba(var(--pm-purple-rgb),0.15)', color: 'var(--pm-purple)', border: '1px solid rgba(var(--pm-purple-rgb),0.3)' }}
                       >
                         {stat.tag}
                       </span>

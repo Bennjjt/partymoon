@@ -163,7 +163,7 @@ function SpotsBadge({ isSoldOut, spotsLeft }: { isSoldOut: boolean; spotsLeft: n
       className="absolute top-4 right-4 z-10 text-[0.6rem] tracking-[0.15em] uppercase px-3 py-[0.4rem] rounded-[2px]"
       style={isSoldOut
         ? { background: 'rgba(80,20,20,0.8)', color: '#f09595' }
-        : { background: 'rgba(107,95,204,0.8)', color: '#fff' }}
+        : { background: 'rgba(var(--pm-purple-rgb),0.8)', color: '#fff' }}
     >
       {isSoldOut ? 'Sold out' : `${spotsLeft} spot${spotsLeft === 1 ? '' : 's'} left`}
     </div>
