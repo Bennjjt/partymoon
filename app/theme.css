@@ -1,0 +1,44 @@
+/*
+ * PartyMoon design tokens
+ * Extracted from the agreed client design (partymoon.html).
+ * Components reference these variables — edit here to retheme the entire UI.
+ */
+
+:root {
+  /* ── Palette ────────────────────────────────────────────────────── */
+  --pm-midnight:      #0f0f1e;   /* page background                   */
+  --pm-deep:          #161628;   /* card / panel surface              */
+  --pm-navy:          #1e1e38;   /* input / elevated surface          */
+
+  --pm-purple:        #6B5FCC;   /* primary accent                    */
+  --pm-purple-light:  #9B8FED;   /* eyebrows, muted labels            */
+
+  --pm-moon:          #ddd0ff;   /* logo wordmark, star particles     */
+  --pm-moon-dim:      #b8aee0;
+
+  --pm-gold:          #f2d878;   /* Silk Soiree accent                */
+  --pm-gold-dim:      #c9a84c;
+
+  --pm-cream:         #ffffff;   /* primary text on dark surfaces     */
+
+  /* Glass / translucent surfaces */
+  --pm-glass:         rgba(255, 255, 255, 0.07);
+  --pm-glass-border:  rgba(255, 255, 255, 0.14);
+
+  /* ── Typography ────────────────────────────────────────────────── */
+  --pm-font-heading:  var(--font-cormorant);   /* Cormorant Garamond  */
+  --pm-font-body:     var(--font-sans);         /* Montserrat          */
+
+  /* ── Shape ─────────────────────────────────────────────────────── */
+  --pm-radius:        2px;       /* sharp minimal corners throughout  */
+
+  /* ── Hero overlay ───────────────────────────────────────────────── */
+  /* Applied via an absolutely-positioned div over the cover image.    */
+  /* Update here to change the overlay across all trip hero sections.  */
+  --hero-overlay-gradient: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.30) 50%,
+    transparent          100%
+  );
+}
