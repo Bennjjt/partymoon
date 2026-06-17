@@ -1,12 +1,11 @@
 'use client'
 
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import type { CoverImage } from '@/lib/data/trips'
-import { TripReserveButton } from '@/components/blocks/TripReserveButton'
 
 interface TripHeroSectionProps {
-  tripId: string
   destination: string
   date: string
   heroTagline?: string | null
@@ -16,7 +15,6 @@ interface TripHeroSectionProps {
 }
 
 export function TripHeroSection({
-  tripId,
   destination,
   date,
   heroTagline,
@@ -169,13 +167,17 @@ export function TripHeroSection({
 
           {/* Right: CTA */}
           <div id="book">
-            <TripReserveButton
-              tripId={tripId}
-              destination={destination}
-              date={date}
-              priceFrom={priceFrom}
-              variant="ghost"
-            />
+            <Link
+              href="/#waitlist"
+              className="text-[0.65rem] tracking-[0.2em] uppercase font-bold px-8 py-3 rounded-[2px] border transition-colors"
+              style={{
+                background: 'transparent',
+                borderColor: 'var(--pm-purple)',
+                color: 'var(--pm-purple)',
+              }}
+            >
+              Secure your spot
+            </Link>
           </div>
         </motion.div>
       </div>

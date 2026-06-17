@@ -1,15 +1,13 @@
 import Link from 'next/link'
 import { PortableText } from 'next-sanity'
-import { TripReserveButton } from '@/components/blocks/TripReserveButton'
 import { formatPrice } from '@/lib/data/trips'
 import type { Trip } from '@/lib/data/trips'
 
 interface TripBookingSidebarProps {
   trip: Pick<Trip, 'id' | 'destination' | 'priceFrom' | 'deposit' | 'spotsTotal' | 'spotsTaken' | 'summary'>
-  dateLabel: string
 }
 
-export function TripBookingSidebar({ trip, dateLabel }: TripBookingSidebarProps) {
+export function TripBookingSidebar({ trip }: TripBookingSidebarProps) {
   const spotsLeft = trip.spotsTotal - trip.spotsTaken
   const isSoldOut = spotsLeft <= 0
   const fillPct = Math.round((trip.spotsTaken / trip.spotsTotal) * 100)
@@ -65,12 +63,17 @@ export function TripBookingSidebar({ trip, dateLabel }: TripBookingSidebarProps)
                 Join the waitlist
               </Link>
             ) : (
-              <TripReserveButton
-                tripId={trip.id}
-                destination={trip.destination}
-                date={dateLabel}
-                priceFrom={formatPrice(trip.priceFrom)}
-              />
+              <Link
+                href="/#waitlist"
+                className="block w-full text-center text-[0.65rem] tracking-[0.2em] uppercase font-bold py-3 rounded-[2px] border transition-colors"
+                style={{
+                  background: 'var(--pm-purple)',
+                  borderColor: 'var(--pm-purple)',
+                  color: 'var(--pm-midnight)',
+                }}
+              >
+                Reserve your place
+              </Link>
             )}
 
             <p className="text-[0.6rem] text-white/40 mt-4 text-center">

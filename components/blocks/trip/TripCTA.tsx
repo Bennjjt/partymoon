@@ -1,15 +1,14 @@
+import Link from 'next/link'
 import { formatPrice } from '@/lib/data/trips'
-import { TripReserveButton } from '@/components/blocks/TripReserveButton'
 
 interface TripCTAProps {
-  tripId: string
   destination: string
   date: string
   priceFrom: number
   deposit: number
 }
 
-export function TripCTA({ tripId, destination, date, priceFrom, deposit }: TripCTAProps) {
+export function TripCTA({ destination, priceFrom, deposit }: TripCTAProps) {
   return (
     <div
       className="relative overflow-hidden text-center py-36 px-6"
@@ -54,12 +53,17 @@ export function TripCTA({ tripId, destination, date, priceFrom, deposit }: TripC
         </p>
 
         <div className="flex justify-center mb-6">
-          <TripReserveButton
-            tripId={tripId}
-            destination={destination}
-            date={date}
-            priceFrom={formatPrice(priceFrom)}
-          />
+          <Link
+            href="/#waitlist"
+            className="text-[0.65rem] tracking-[0.2em] uppercase font-bold px-8 py-3 rounded-[2px] border transition-colors"
+            style={{
+              background: 'var(--pm-purple)',
+              borderColor: 'var(--pm-purple)',
+              color: 'var(--pm-midnight)',
+            }}
+          >
+            Reserve your place
+          </Link>
         </div>
 
         <p className="text-[0.65rem] tracking-[0.2em] uppercase font-light" style={{ color: 'rgba(var(--pm-purple-rgb),0.4)' }}>

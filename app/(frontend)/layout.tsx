@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { BookingProvider } from '@/components/providers/BookingProvider'
 
 export const metadata: Metadata = {
   title: {
@@ -11,7 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function FrontendLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <BookingProvider>{children}</BookingProvider>
-  )
+  return <>{children}</>
 }

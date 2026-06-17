@@ -57,7 +57,6 @@ export default async function TripDetailPage({ params }: Props) {
       <main>
 
         <TripHeroSection
-          tripId={trip.id}
           destination={trip.destination}
           date={dateLabel}
           heroTagline={trip.heroTagline}
@@ -97,11 +96,10 @@ export default async function TripDetailPage({ params }: Props) {
         ) : null}
 
         {!trip.inclusions?.length && (
-          <TripBookingSidebar trip={trip} dateLabel={dateLabel} />
+          <TripBookingSidebar trip={trip} />
         )}
 
         <TripCTA
-          tripId={trip.id}
           destination={trip.destination}
           date={dateLabel}
           priceFrom={trip.priceFrom}
