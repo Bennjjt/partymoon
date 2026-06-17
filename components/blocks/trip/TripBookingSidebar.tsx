@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { PortableText } from 'next-sanity'
 import { TripReserveButton } from '@/components/blocks/TripReserveButton'
 import { formatPrice } from '@/lib/data/trips'
@@ -56,13 +57,13 @@ export function TripBookingSidebar({ trip, dateLabel }: TripBookingSidebarProps)
             </div>
 
             {isSoldOut ? (
-              <a
+              <Link
                 href="/#waitlist"
                 className="block w-full text-center text-[0.65rem] tracking-[0.2em] uppercase py-3 border text-white rounded-[2px]"
                 style={{ borderColor: 'var(--pm-glass-border)' }}
               >
                 Join the waitlist
-              </a>
+              </Link>
             ) : (
               <TripReserveButton
                 tripId={trip.id}

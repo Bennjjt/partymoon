@@ -79,7 +79,7 @@ export function TripClubs({ clubs }: TripClubsProps) {
             style={{ border: '1px solid rgba(var(--pm-purple-rgb),0.15)', background: 'rgba(var(--pm-purple-rgb),0.05)' }}
           >
             <p className="text-[0.9rem] italic font-light leading-[1.7]" style={{ color: 'rgba(232,232,240,0.55)' }}>
-              Venues are confirmed closer to your travel date — chosen based on what the city is hosting that weekend, the group's vibe, and your hosts' relationships with the most exclusive doors in town.
+              Venues are confirmed closer to your travel date — chosen based on what the city is hosting that weekend, the group&apos;s vibe, and your hosts&apos; relationships with the most exclusive doors in town.
             </p>
           </div>
         </RevealOnScroll>
