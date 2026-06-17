@@ -87,10 +87,11 @@ export function PackagesSection() {
         </p>
         <h2
           className="font-heading font-light leading-[1.2] mb-4"
-          style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
+          style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', textWrap: 'balance' }}
         >
           Choose your <em className="italic">package</em>
         </h2>
+        <div className="w-16 h-[3px] my-5" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-gold))' }} />
         <p className="text-[0.75rem] tracking-[0.08em] leading-[2] text-white/60 max-w-[500px]">
           Every package includes return flights, five-star accommodation and a dedicated host. Choose
           how deep you want to go.

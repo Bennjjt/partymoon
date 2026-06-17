@@ -1,5 +1,6 @@
+import { PortableText } from 'next-sanity'
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
-import { renderRichText } from '@/lib/data/trips'
+import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
 import type { SignatureExperience } from '@/lib/data/trips'
 
 interface TripSignatureExperienceProps {
@@ -7,13 +8,7 @@ interface TripSignatureExperienceProps {
 }
 
 export function TripSignatureExperience({ experience }: TripSignatureExperienceProps) {
-  if (!experience.heading && !experience.description) return null
-
-  const bodyText = typeof experience.description === 'string'
-    ? experience.description
-    : renderRichText(experience.description)
-
-  const paragraphs = bodyText.split('\n\n').filter(Boolean)
+  if (!experience.heading && !experience.description?.length) return null
 
   return (
     <div
@@ -28,26 +23,32 @@ export function TripSignatureExperience({ experience }: TripSignatureExperienceP
       <div className="px-6 md:px-12 py-24">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20 items-start">
           {/* Left: text */}
-          <RevealOnScroll>
-            {experience.eyebrow && (
-              <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: 'var(--pm-accent)' }}>
-                {experience.eyebrow}
-              </p>
+          <div>
+            {(experience.eyebrow || experience.heading) && (
+              <TripSectionHeader
+                eyebrow={experience.eyebrow ?? ''}
+                headline={experience.heading ?? ''}
+              />
             )}
-            {experience.heading && (
-              <h2 className="font-heading font-light text-white mb-3" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: 0.95 }}>
-                {experience.heading}
-              </h2>
+            {experience.description && experience.description.length > 0 && (
+              <RevealOnScroll>
+                <div className="space-y-4 max-w-xl">
+                  <PortableText
+                    value={experience.description}
+                    components={{
+                      block: {
+                        normal: ({ children }) => (
+                          <p className="text-[0.9rem] leading-[1.9] font-light" style={{ color: 'rgba(232,232,240,0.65)' }}>
+                            {children}
+                          </p>
+                        ),
+                      },
+                    }}
+                  />
+                </div>
+              </RevealOnScroll>
             )}
-            <div className="w-16 h-[3px] mb-6" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-purple))' }} />
-            <div className="space-y-4 max-w-xl">
-              {paragraphs.map((para, i) => (
-                <p key={i} className="text-[0.9rem] leading-[1.9] font-light" style={{ color: 'rgba(232,232,240,0.65)' }}>
-                  {para}
-                </p>
-              ))}
-            </div>
-          </RevealOnScroll>
+          </div>
 
           {/* Right: stats panel */}
           {experience.stats && experience.stats.length > 0 && (

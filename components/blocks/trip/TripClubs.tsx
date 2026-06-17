@@ -1,4 +1,5 @@
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
+import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
 import type { TripClub } from '@/lib/data/trips'
 
 interface TripClubsProps {
@@ -19,23 +20,18 @@ export function TripClubs({ clubs }: TripClubsProps) {
       }}
     >
       <div className="px-6 md:px-12 py-24">
-        <RevealOnScroll>
-          <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: 'var(--pm-accent)' }}>Two Nights Out</p>
-          <h2 className="font-heading font-light text-white mb-3" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: 0.95 }}>
-            THE CLUBS.<br />
-            <em className="italic" style={{ color: 'var(--pm-purple-light)', fontSize: '0.75em' }}>the finest.</em>
-          </h2>
-          <div className="w-16 h-[3px] mb-6" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-purple))' }} />
-          <p className="text-[0.9rem] leading-[1.9] font-light max-w-xl mb-10" style={{ color: 'rgba(232,232,240,0.6)' }}>
-            Your two VIP nights are curated for the group's energy and confirmed in advance. Entry guaranteed, tables booked.
-          </p>
-        </RevealOnScroll>
+        <TripSectionHeader
+          eyebrow="Two Nights Out"
+          headline="THE CLUBS."
+          sub="the finest."
+          description="Your two VIP nights are curated for the group's energy and confirmed in advance. Entry guaranteed, tables booked."
+        />
 
         <div className="grid sm:grid-cols-2 gap-[1.5px]" style={{ background: 'rgba(var(--pm-purple-rgb),0.12)' }}>
           {clubs.map((club, i) => (
-            <RevealOnScroll key={club.id ?? i} delay={i * 0.08}>
+            <RevealOnScroll key={club.id ?? i} delay={i * 0.08} className="h-full">
               <div
-                className="p-10 relative overflow-hidden transition-colors duration-300 group"
+                className="h-full p-10 relative overflow-hidden transition-colors duration-300 group"
                 style={{ background: 'var(--pm-deep)' }}
               >
                 <span
@@ -63,7 +59,7 @@ export function TripClubs({ clubs }: TripClubsProps) {
                 )}
 
                 {club.description && (
-                  <p className="text-[0.9rem] leading-[1.75] font-light" style={{ color: 'rgba(232,232,240,0.5)' }}>
+                  <p className="text-[0.9rem] leading-[1.75] font-light" style={{ color: 'rgba(232,232,240,0.65)' }}>
                     {club.description}
                   </p>
                 )}
@@ -82,8 +78,8 @@ export function TripClubs({ clubs }: TripClubsProps) {
             className="mt-6 px-6 py-5"
             style={{ border: '1px solid rgba(var(--pm-purple-rgb),0.15)', background: 'rgba(var(--pm-purple-rgb),0.05)' }}
           >
-            <p className="text-[0.9rem] italic font-light leading-[1.7]" style={{ color: 'rgba(232,232,240,0.4)' }}>
-              Venues are confirmed closer to your travel date — chosen based on what the city is hosting that weekend, the group's vibe, and your hosts' relationships with the most exclusive doors in town.
+            <p className="text-[0.9rem] italic font-light leading-[1.7]" style={{ color: 'rgba(232,232,240,0.55)' }}>
+              Venues are confirmed closer to your travel date — chosen based on what the city is hosting that weekend, the group&apos;s vibe, and your hosts&apos; relationships with the most exclusive doors in town.
             </p>
           </div>
         </RevealOnScroll>

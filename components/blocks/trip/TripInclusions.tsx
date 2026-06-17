@@ -1,4 +1,6 @@
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
+import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
+import { TripIcon } from '@/components/ui/TripIcon'
 import type { TripInclusion } from '@/lib/data/trips'
 
 interface TripInclusionsProps {
@@ -11,13 +13,7 @@ export function TripInclusionsDetail({ inclusions }: TripInclusionsProps) {
   return (
     <section style={{ background: 'var(--pm-midnight)', position: 'relative', zIndex: 2 }}>
       <div className="px-6 md:px-12 py-24">
-        <RevealOnScroll>
-          <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: 'var(--pm-accent)' }}>The Full Package</p>
-          <h2 className="font-heading font-light text-white mb-3" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: 0.95 }}>
-            EVERYTHING.<br /><em className="italic" style={{ color: 'var(--pm-purple-light)', fontSize: '0.75em' }}>included.</em>
-          </h2>
-          <div className="w-16 h-[3px] mb-10" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-purple))' }} />
-        </RevealOnScroll>
+        <TripSectionHeader eyebrow="The Full Package" headline="EVERYTHING." sub="included." />
 
         <div
           className="grid"
@@ -29,23 +25,27 @@ export function TripInclusionsDetail({ inclusions }: TripInclusionsProps) {
           }}
         >
           {inclusions.map((item, i) => (
-            <RevealOnScroll key={item.id ?? i} delay={i * 0.05}>
+            <RevealOnScroll key={item.id ?? i} delay={i * 0.05} className="h-full">
               <div
-                className="p-9 relative overflow-hidden transition-colors duration-300 group"
+                className="h-full p-9 relative overflow-hidden transition-colors duration-300 group"
                 style={{ background: 'var(--pm-deep)' }}
               >
                 <div
                   className="absolute bottom-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
                   style={{ background: 'linear-gradient(to right, var(--pm-purple), var(--pm-gold-dim))' }}
                 />
-                {item.icon && <span className="text-3xl block mb-4">{item.icon}</span>}
+                {item.icon && (
+                  <div className="mb-4" style={{ color: 'var(--pm-purple)' }}>
+                    <TripIcon name={item.icon} size={28} strokeWidth={1.5} />
+                  </div>
+                )}
                 <p className="font-heading text-[1.1rem] text-white mb-2 leading-tight">{item.title}</p>
                 {item.detail ? (
-                  <p className="text-[0.85rem] leading-[1.75] font-light" style={{ color: 'rgba(232,232,240,0.5)' }}>
+                  <p className="text-[0.85rem] leading-[1.75] font-light" style={{ color: 'rgba(232,232,240,0.65)' }}>
                     {item.detail}
                   </p>
                 ) : item.sub ? (
-                  <p className="text-[0.85rem] leading-[1.75] font-light" style={{ color: 'rgba(232,232,240,0.5)' }}>
+                  <p className="text-[0.85rem] leading-[1.75] font-light" style={{ color: 'rgba(232,232,240,0.65)' }}>
                     {item.sub}
                   </p>
                 ) : null}
@@ -64,32 +64,26 @@ export function TripInclusionsSummary({ inclusions }: TripInclusionsProps) {
   return (
     <section style={{ background: 'var(--pm-midnight)', position: 'relative', zIndex: 2 }}>
       <div className="px-6 md:px-12 py-24">
-        <RevealOnScroll>
-          <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: 'var(--pm-accent)' }}>The Full List</p>
-          <h2 className="font-heading font-light text-white mb-3" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: 0.95 }}>
-            ALL IN.<br /><em className="italic" style={{ color: 'var(--pm-purple-light)', fontSize: '0.75em' }}>no surprises.</em>
-          </h2>
-          <div className="w-16 h-[3px] mb-10" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-purple))' }} />
-        </RevealOnScroll>
+        <TripSectionHeader eyebrow="The Full List" headline="ALL IN." sub="no surprises." />
 
         <div
           className="grid"
           style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: '1px', background: 'rgba(var(--pm-purple-rgb),0.1)' }}
         >
           {inclusions.map((item, i) => (
-            <RevealOnScroll key={item.id ?? i} delay={i * 0.04}>
+            <RevealOnScroll key={item.id ?? i} delay={i * 0.04} className="h-full">
               <div
-                className="py-7 px-6 text-center transition-colors duration-300"
+                className="h-full py-7 px-6 text-center transition-colors duration-300"
                 style={{ background: 'var(--pm-midnight)' }}
               >
                 {item.icon && (
-                  <span className="text-3xl block mb-3" style={{ filter: 'drop-shadow(0 0 8px rgba(var(--pm-purple-rgb),0.4))' }}>
-                    {item.icon}
-                  </span>
+                  <div className="flex justify-center mb-3" style={{ color: 'var(--pm-purple)', filter: 'drop-shadow(0 0 8px rgba(var(--pm-purple-rgb),0.4))' }}>
+                    <TripIcon name={item.icon} size={24} strokeWidth={1.5} />
+                  </div>
                 )}
                 <p className="font-heading text-[0.9rem] tracking-[0.04em] text-white mb-1">{item.title}</p>
                 {item.sub && (
-                  <p className="text-[0.7rem] font-light leading-snug" style={{ color: 'rgba(232,232,240,0.4)' }}>{item.sub}</p>
+                  <p className="text-[0.7rem] font-light leading-snug" style={{ color: 'rgba(232,232,240,0.55)' }}>{item.sub}</p>
                 )}
               </div>
             </RevealOnScroll>
@@ -102,7 +96,7 @@ export function TripInclusionsSummary({ inclusions }: TripInclusionsProps) {
             style={{ border: '1px solid rgba(var(--pm-purple-rgb),0.12)' }}
           >
             <span className="size-2 rounded-full flex-shrink-0" style={{ background: 'var(--pm-purple)', boxShadow: '0 0 8px var(--pm-purple)' }} />
-            <p className="text-[0.85rem] font-light italic" style={{ color: 'rgba(232,232,240,0.4)' }}>
+            <p className="text-[0.85rem] font-light italic" style={{ color: 'rgba(232,232,240,0.55)' }}>
               All packages are fully inclusive. Group sizes are kept small on purpose — this is a hosted experience, not a coach trip. Spaces go quickly.
             </p>
           </div>

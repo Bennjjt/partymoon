@@ -1,4 +1,5 @@
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
+import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
 import type { TripSpa as TripSpaType } from '@/lib/data/trips'
 
 interface TripSpaProps {
@@ -11,22 +12,12 @@ export function TripSpa({ spa }: TripSpaProps) {
   return (
     <section style={{ background: 'var(--pm-deep)', position: 'relative', zIndex: 2 }}>
       <div className="px-6 md:px-12 py-24">
-        <RevealOnScroll>
-          {spa.eyebrow && (
-            <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: 'var(--pm-accent)' }}>{spa.eyebrow}</p>
-          )}
-          {spa.heading && (
-            <h2 className="font-heading font-light text-white mb-1" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', lineHeight: 0.95 }}>
-              {spa.heading}
-            </h2>
-          )}
-          {spa.subheading && (
-            <p className="font-heading italic mb-3" style={{ fontSize: 'clamp(1.2rem, 2.5vw, 2rem)', color: 'var(--pm-purple-light)' }}>
-              {spa.subheading}
-            </p>
-          )}
-          <div className="w-16 h-[3px] mb-8" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-purple))' }} />
-        </RevealOnScroll>
+        <TripSectionHeader
+          eyebrow={spa.eyebrow ?? ''}
+          headline={spa.heading ?? ''}
+          subheading={spa.subheading ?? undefined}
+          dividerClass="mb-8"
+        />
 
         <RevealOnScroll delay={0.1}>
           <div
@@ -34,7 +25,12 @@ export function TripSpa({ spa }: TripSpaProps) {
             style={{ background: 'var(--pm-navy)', border: '1px solid rgba(var(--pm-purple-rgb),0.2)' }}
           >
             {/* Decorative crescent */}
-            <span className="absolute right-[-1rem] top-[-1rem] text-[12rem] leading-none pointer-events-none select-none" style={{ color: 'rgba(var(--pm-purple-rgb),0.04)' }}>◑</span>
+            <span
+              className="absolute right-[-1rem] top-[-1rem] text-[12rem] leading-none pointer-events-none select-none"
+              style={{ color: 'rgba(var(--pm-purple-rgb),0.04)' }}
+            >
+              ◑
+            </span>
 
             {spa.description && (
               <p className="text-[0.95rem] leading-[2] font-light max-w-2xl mb-8" style={{ color: 'rgba(232,232,240,0.65)' }}>

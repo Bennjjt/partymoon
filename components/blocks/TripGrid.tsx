@@ -1,13 +1,9 @@
 'use client'
 
+import Link from 'next/link'
 import type { Trip } from '@/lib/data/trips'
 import { motion } from 'framer-motion'
 import { TripCard } from './TripCard'
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'easeOut' as const } },
-}
 
 export function TripGrid({ trips }: { trips: Trip[] }) {
   if (trips.length === 0) return <NoResults />
@@ -37,13 +33,13 @@ function NoResults() {
       <p className="text-[0.75rem] tracking-[0.08em] text-white/40 mb-8">
         No weekends are currently scheduled for that destination.
       </p>
-      <a
+      <Link
         href="/"
         className="text-[0.65rem] tracking-[0.2em] uppercase px-8 py-3 border text-white rounded-[2px] transition-colors hover:border-white/40"
         style={{ borderColor: 'var(--pm-glass-border)' }}
       >
         View all trips
-      </a>
+      </Link>
     </div>
   )
 }

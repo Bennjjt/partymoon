@@ -33,10 +33,11 @@ export function Testimonials() {
         </p>
         <h2
           className="font-heading font-light leading-[1.2]"
-          style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
+          style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', textWrap: 'balance' }}
         >
           What our guests <em className="italic">say</em>
         </h2>
+        <div className="w-16 h-[3px] mt-5 mx-auto" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-gold))' }} />
       </RevealOnScroll>
 
       <div className="grid gap-6 md:grid-cols-3">

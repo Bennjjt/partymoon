@@ -1,6 +1,6 @@
 'use client'
 
-import { useBooking } from '@/components/providers/BookingProvider'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 
 const FEATURES = [
@@ -34,8 +34,6 @@ const CITIES = [
 ]
 
 export function SilkSoiree() {
-  const { open } = useBooking()
-
   return (
     <section
       className="px-6 md:px-12 py-24 border-y"
@@ -55,19 +53,19 @@ export function SilkSoiree() {
         >
           <p
             className="text-[0.6rem] tracking-[0.35em] uppercase mb-3"
-            style={{ color: 'var(--pm-silk-red-dim)' }}
+            style={{ color: 'var(--pm-silk-red)' }}
           >
             A Partymoon experience
           </p>
           <h2
             className="font-heading font-light italic leading-[1.2] mb-6"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--pm-silk-red)' }}
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--pm-silk-red)', textWrap: 'balance' }}
           >
             Silk Soiree
           </h2>
           <p
             className="text-[0.75rem] tracking-[0.08em] leading-[2] max-w-[500px]"
-            style={{ color: 'rgba(255,255,255,0.55)' }}
+            style={{ color: 'rgba(255,255,255,0.65)' }}
           >
             Exclusively for professional women. You spend your working life organising everything for
             everyone else. This weekend, let us handle every single detail — you simply arrive and enjoy
@@ -95,23 +93,13 @@ export function SilkSoiree() {
             ))}
           </ul>
 
-          <button
-            onClick={() =>
-              open({ destination: 'Silk Soiree', date: 'your chosen date', basePrice: '£4,500' })
-            }
+          <Link
+            href="/#waitlist"
             className="inline-flex mt-10 text-[0.65rem] tracking-[0.2em] uppercase font-bold px-10 py-4 border rounded-[2px] transition-all"
             style={{ color: 'var(--pm-silk-red)', borderColor: 'var(--pm-silk-red-dim)' }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'var(--pm-silk-btn-hover-bg)'
-              e.currentTarget.style.borderColor = 'var(--pm-silk-red)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'transparent'
-              e.currentTarget.style.borderColor = 'var(--pm-silk-red-dim)'
-            }}
           >
             Discover Silk Soiree
-          </button>
+          </Link>
         </motion.div>
 
         {/* Right — city cards */}
@@ -147,7 +135,7 @@ export function SilkSoiree() {
               </div>
               <p
                 className="text-[0.65rem] tracking-[0.08em] leading-[1.8]"
-                style={{ color: 'rgba(255,255,255,0.45)' }}
+                style={{ color: 'rgba(255,255,255,0.60)' }}
               >
                 {desc}
               </p>

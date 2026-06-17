@@ -1,15 +1,14 @@
+import Link from 'next/link'
 import { formatPrice } from '@/lib/data/trips'
-import { TripReserveButton } from '@/components/blocks/TripReserveButton'
 
 interface TripCTAProps {
-  tripId: string
   destination: string
   date: string
   priceFrom: number
   deposit: number
 }
 
-export function TripCTA({ tripId, destination, date, priceFrom, deposit }: TripCTAProps) {
+export function TripCTA({ destination, priceFrom, deposit }: TripCTAProps) {
   return (
     <div
       className="relative overflow-hidden text-center py-36 px-6"
@@ -33,7 +32,7 @@ export function TripCTA({ tripId, destination, date, priceFrom, deposit }: TripC
           Don&rsquo;t Miss Out
         </p>
 
-        <h2 className="font-heading font-light text-white leading-none mb-2" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}>
+        <h2 className="font-heading font-light text-white leading-none mb-2" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', textWrap: 'balance' }}>
           GET YOUR SPOT
         </h2>
         <p className="font-heading font-light mb-8" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', color: 'var(--pm-accent)', lineHeight: 1, filter: 'drop-shadow(0 0 20px rgba(var(--pm-accent-rgb),0.4))' }}>
@@ -49,17 +48,22 @@ export function TripCTA({ tripId, destination, date, priceFrom, deposit }: TripC
           {formatPrice(priceFrom)}
           <span className="font-sans text-[0.75rem] font-light text-white/40 ml-2">per person, from</span>
         </p>
-        <p className="text-[0.65rem] tracking-[0.1em] text-white/30 mb-8">
+        <p className="text-[0.65rem] tracking-[0.1em] text-white/40 mb-8">
           {formatPrice(deposit)} deposit secures your place
         </p>
 
         <div className="flex justify-center mb-6">
-          <TripReserveButton
-            tripId={tripId}
-            destination={destination}
-            date={date}
-            priceFrom={formatPrice(priceFrom)}
-          />
+          <Link
+            href="/#waitlist"
+            className="text-[0.65rem] tracking-[0.2em] uppercase font-bold px-8 py-3 rounded-[2px] border transition-colors"
+            style={{
+              background: 'var(--pm-purple)',
+              borderColor: 'var(--pm-purple)',
+              color: 'var(--pm-midnight)',
+            }}
+          >
+            Reserve your place
+          </Link>
         </div>
 
         <p className="text-[0.65rem] tracking-[0.2em] uppercase font-light" style={{ color: 'rgba(var(--pm-purple-rgb),0.4)' }}>

@@ -111,7 +111,7 @@ export function Footer() {
         className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-8 border-t"
         style={{ borderColor: 'var(--pm-glass-border)' }}
       >
-        <p className="text-[0.6rem] tracking-[0.1em]" style={{ color: 'rgba(180,170,220,0.7)' }}>
+        <p className="text-[0.6rem] tracking-[0.1em] text-white/40">
           © {new Date().getFullYear()} Partymoon Ltd. All rights reserved. ATOL protected.
         </p>
         <ul className="flex items-center gap-6">

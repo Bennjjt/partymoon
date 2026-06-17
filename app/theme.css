@@ -20,6 +20,7 @@
 
   --pm-gold:          #f2d878;   /* bright gold — decorative, stars   */
   --pm-gold-dim:      #c9a84c;   /* rich gold — same as primary accent */
+  --pm-gold-rgb:      242, 216, 120; /* channels for rgba() composition */
 
   --pm-cream:         #ffffff;   /* primary text on dark surfaces     */
 

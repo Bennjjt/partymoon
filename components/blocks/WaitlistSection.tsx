@@ -48,10 +48,11 @@ export function WaitlistSection() {
         </p>
         <h2
           className="font-heading font-light leading-[1.2] mb-6"
-          style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
+          style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', textWrap: 'balance' }}
         >
           Be first <em className="italic">in</em>
         </h2>
+        <div className="w-16 h-[3px] mt-5 mx-auto" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-gold))' }} />
 
         <p className="font-heading text-[3rem] text-white mt-8">14,247</p>
         <p
@@ -67,7 +68,7 @@ export function WaitlistSection() {
         </p>
 
         {submitted ? (
-          <p className="text-[0.75rem] tracking-[0.08em]" style={{ color: '#5DCAA5' }}>
+          <p className="text-[0.75rem] tracking-[0.08em]" style={{ color: 'var(--pm-purple-light)' }}>
             You&apos;re on the list. We&apos;ll be in touch very soon.
           </p>
         ) : (
@@ -83,7 +84,7 @@ export function WaitlistSection() {
                 onChange={(e) => setName(e.target.value)}
                 required
                 disabled={loading}
-                className="flex-1 min-w-0 px-6 py-4 rounded-[2px] text-[0.75rem] tracking-[0.08em] text-white placeholder-white/30 outline-none transition-colors disabled:opacity-50"
+                className="flex-1 min-w-0 px-6 py-4 rounded-[2px] text-[0.75rem] tracking-[0.08em] text-white placeholder-white/40 outline-none transition-colors disabled:opacity-50"
                 style={{ background: 'var(--pm-deep)', border: '1px solid var(--pm-glass-border)' }}
                 onFocus={(e) => (e.currentTarget.style.borderColor = 'var(--pm-purple)')}
                 onBlur={(e) => (e.currentTarget.style.borderColor = 'var(--pm-glass-border)')}
@@ -95,7 +96,7 @@ export function WaitlistSection() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 disabled={loading}
-                className="flex-1 min-w-0 px-6 py-4 rounded-[2px] text-[0.75rem] tracking-[0.08em] text-white placeholder-white/30 outline-none transition-colors disabled:opacity-50"
+                className="flex-1 min-w-0 px-6 py-4 rounded-[2px] text-[0.75rem] tracking-[0.08em] text-white placeholder-white/40 outline-none transition-colors disabled:opacity-50"
                 style={{ background: 'var(--pm-deep)', border: '1px solid var(--pm-glass-border)' }}
                 onFocus={(e) => (e.currentTarget.style.borderColor = 'var(--pm-purple)')}
                 onBlur={(e) => (e.currentTarget.style.borderColor = 'var(--pm-glass-border)')}
@@ -113,7 +114,7 @@ export function WaitlistSection() {
             {error && (
               <p
                 className="text-[0.7rem] tracking-[0.05em] mt-3"
-                style={{ color: '#f09595' }}
+                style={{ color: 'rgba(255,120,120,0.9)' }}
               >
                 {error}
               </p>

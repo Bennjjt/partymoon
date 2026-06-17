@@ -1,6 +1,5 @@
 'use client'
 
-import { useBooking } from '@/components/providers/BookingProvider'
 import {
   type CoverImage,
   type Trip,
@@ -15,24 +14,12 @@ import Link from 'next/link'
 const IMAGE_SIZES = '(max-width: 639px) 100vw, (max-width: 1279px) 50vw, 33vw'
 
 export function TripCard({ trip }: { trip: Trip }) {
-  const { open } = useBooking()
   const availability = getTripAvailability(trip)
   const isSoldOut = availability === 'sold-out'
   const spotsLeft = trip.spotsTotal - trip.spotsTaken
   const spotsPercent = Math.round((trip.spotsTaken / trip.spotsTotal) * 100)
   const dateLabel = formatDateRange(trip.startDate, trip.endDate)
   const priceLabel = formatPrice(trip.priceFrom)
-
-  const handleBook = () => {
-    if (!isSoldOut) {
-      open({
-        tripId: trip.id,
-        destination: trip.destination,
-        date: dateLabel,
-        basePrice: priceLabel,
-      })
-    }
-  }
 
   return (
     <motion.article
@@ -89,30 +76,23 @@ export function TripCard({ trip }: { trip: Trip }) {
           </Link>
 
           {isSoldOut ? (
-            <a
-              href="#waitlist"
+            <Link
+              href="/#waitlist"
               onClick={(e) => e.stopPropagation()}
               className="flex-1 text-center text-[0.6rem] tracking-[0.2em] uppercase font-bold py-3 border text-white rounded-[2px] transition-colors hover:border-white/40"
               style={{ borderColor: 'var(--pm-glass-border)' }}
             >
               Join waitlist
-            </a>
+            </Link>
           ) : (
-            <button
-              onClick={handleBook}
+            <Link
+              href={`/${trip.slug}`}
+              onClick={(e) => e.stopPropagation()}
               className="flex-1 text-center text-[0.6rem] tracking-[0.2em] uppercase font-bold py-3 rounded-[2px] border transition-colors"
               style={{ background: 'var(--pm-purple)', borderColor: 'var(--pm-purple)', color: 'var(--pm-midnight)' }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'transparent'
-                e.currentTarget.style.color = 'var(--pm-purple)'
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'var(--pm-purple)'
-                e.currentTarget.style.color = 'var(--pm-midnight)'
-              }}
             >
               Reserve
-            </button>
+            </Link>
           )}
         </div>
       </div>
