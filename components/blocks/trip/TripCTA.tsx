@@ -33,7 +33,7 @@ export function TripCTA({ tripId, destination, date, priceFrom, deposit }: TripC
           Don&rsquo;t Miss Out
         </p>
 
-        <h2 className="font-heading font-light text-white leading-none mb-2" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)' }}>
+        <h2 className="font-heading font-light text-white leading-none mb-2" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', textWrap: 'balance' }}>
           GET YOUR SPOT
         </h2>
         <p className="font-heading font-light mb-8" style={{ fontSize: 'clamp(2.5rem, 6vw, 5rem)', color: 'var(--pm-accent)', lineHeight: 1, filter: 'drop-shadow(0 0 20px rgba(var(--pm-accent-rgb),0.4))' }}>
@@ -49,7 +49,7 @@ export function TripCTA({ tripId, destination, date, priceFrom, deposit }: TripC
           {formatPrice(priceFrom)}
           <span className="font-sans text-[0.75rem] font-light text-white/40 ml-2">per person, from</span>
         </p>
-        <p className="text-[0.65rem] tracking-[0.1em] text-white/30 mb-8">
+        <p className="text-[0.65rem] tracking-[0.1em] text-white/40 mb-8">
           {formatPrice(deposit)} deposit secures your place
         </p>
 

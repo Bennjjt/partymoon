@@ -1,4 +1,6 @@
+import { MapPin } from 'lucide-react'
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
+import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
 import type { TripHotelOption } from '@/lib/data/trips'
 
 interface TripHotelOptionsProps {
@@ -11,23 +13,18 @@ export function TripHotelOptions({ hotelOptions }: TripHotelOptionsProps) {
   return (
     <section style={{ background: 'var(--pm-deep)', position: 'relative', zIndex: 2 }}>
       <div className="px-6 md:px-12 py-24">
-        <RevealOnScroll>
-          <p className="text-[0.6rem] tracking-[0.5em] uppercase mb-4" style={{ color: 'var(--pm-accent)' }}>Where You Sleep</p>
-          <h2 className="font-heading font-light text-white mb-3" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', lineHeight: 0.95 }}>
-            THE HOTEL.<br />
-            <em className="italic" style={{ color: 'var(--pm-purple-light)', fontSize: '0.75em' }}>not just a room.</em>
-          </h2>
-          <div className="w-16 h-[3px] mb-6" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-purple))' }} />
-          <p className="text-[0.9rem] leading-[1.9] font-light max-w-xl mb-10" style={{ color: 'rgba(232,232,240,0.6)' }}>
-            Your Partymoon hotel is chosen for luxury, location, and spa access that genuinely delivers.
-          </p>
-        </RevealOnScroll>
+        <TripSectionHeader
+          eyebrow="Where You Sleep"
+          headline="THE HOTEL."
+          sub="not just a room."
+          description="Your Partymoon hotel is chosen for luxury, location, and spa access that genuinely delivers."
+        />
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {hotelOptions.map((hotel, i) => (
-            <RevealOnScroll key={hotel.id ?? i} delay={i * 0.08}>
+            <RevealOnScroll key={hotel.id ?? i} delay={i * 0.08} className="h-full">
               <div
-                className="p-8 relative overflow-hidden transition-all duration-300 group"
+                className="h-full p-8 relative overflow-hidden transition-all duration-300 group"
                 style={{ background: 'var(--pm-navy)', border: '1px solid rgba(var(--pm-purple-rgb),0.2)' }}
               >
                 <div
@@ -51,7 +48,7 @@ export function TripHotelOptions({ hotelOptions }: TripHotelOptionsProps) {
                     className="text-[0.65rem] tracking-[0.2em] uppercase font-light mb-4 pb-4"
                     style={{ color: 'rgba(var(--pm-purple-rgb),0.5)', borderBottom: '1px solid rgba(var(--pm-purple-rgb),0.1)' }}
                   >
-                    📍 {hotel.location}
+                    <MapPin size={10} className="inline-block mr-1 mb-0.5" strokeWidth={1.5} />{hotel.location}
                   </p>
                 )}
 
@@ -61,7 +58,7 @@ export function TripHotelOptions({ hotelOptions }: TripHotelOptionsProps) {
                       className="size-1 rounded-full flex-shrink-0 mt-2"
                       style={{ background: 'var(--pm-purple)', boxShadow: '0 0 4px var(--pm-purple)' }}
                     />
-                    <span className="text-[0.85rem] font-light leading-snug" style={{ color: 'rgba(232,232,240,0.55)' }}>
+                    <span className="text-[0.85rem] font-light leading-snug" style={{ color: 'rgba(232,232,240,0.65)' }}>
                       {f.feature}
                     </span>
                   </div>

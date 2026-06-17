@@ -73,7 +73,7 @@ export function Navbar({ variant = 'default' }: NavbarProps) {
       </Link>
 
       <a
-        href="#book"
+        href={isDark ? '#book' : '#waitlist'}
         className="text-[0.65rem] tracking-[0.15em] uppercase font-bold px-6 py-[0.7rem] border rounded-[2px] font-medium transition-colors"
         style={{ borderColor: 'var(--pm-purple)', color: 'var(--pm-purple)' }}
         onMouseEnter={(e) => {

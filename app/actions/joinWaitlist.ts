@@ -1,8 +1,8 @@
 'use server'
 
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import { z } from 'zod'
+import { db } from '@/lib/db'
+import { waitlistEntries } from '@/lib/db/schema'
 
 const schema = z.object({
   email: z.string().email('Please enter a valid email address.'),
@@ -23,33 +23,24 @@ export async function joinWaitlist(
 
   const { email, name } = parsed.data
 
-  // 1. Write to Payload — this is the source of truth.
+  // 1. Write to Drizzle — this is the source of truth.
   //    A duplicate email (unique constraint) is treated as a silent success;
   //    the email is already on the list, which is the desired outcome.
   try {
-    const payload = await getPayload({ config })
-    await payload.create({
-      collection: 'waitlist-entries',
-      data: {
-        email,
-        source: 'website-waitlist',
-        subscribed: true,
-      },
-      overrideAccess: true,
-    })
+    await db.insert(waitlistEntries).values({
+      email,
+      source: 'website-waitlist',
+      subscribed: true,
+    }).onConflictDoNothing()
   } catch (err: unknown) {
-    if (isDuplicateError(err)) {
-      // Already on the list — return success so the user sees the confirmation state
-      return { success: true }
-    }
-    console.error('[joinWaitlist] Payload write failed:', err)
+    console.error('[joinWaitlist] DB write failed:', err)
     return {
       success: false,
       error: 'Something went wrong. Please try again or contact us directly.',
     }
   }
 
-  // 2. Sync to Loops. Failure here is non-blocking — the Payload write already
+  // 2. Sync to Loops. Failure here is non-blocking — the DB write already
   //    succeeded and the user will see the success state regardless.
   if (process.env.LOOPS_API_KEY) {
     try {
@@ -82,12 +73,4 @@ export async function joinWaitlist(
   }
 
   return { success: true }
-}
-
-function isDuplicateError(err: unknown): boolean {
-  if (err instanceof Error) {
-    const msg = err.message.toLowerCase()
-    return msg.includes('unique') || msg.includes('duplicate') || msg.includes('already exists')
-  }
-  return false
 }

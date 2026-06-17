@@ -1,20 +1,23 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 
-const VIDEO_SRC =
-  '/6710f615b852284eb2c54a89_67aaf271a8e2e550cf8739c5_250209_PENTHOUSE_BRAND%20VIDEO%20REFRESH_16-9-transcode.mp4'
+const VIDEO_SRC = '/videos/hero.mp4'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (delay: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.9, delay, ease: 'easeOut' as const },
-  }),
+function useFadeUp() {
+  const reduce = useReducedMotion()
+  return {
+    hidden: { opacity: 0, y: reduce ? 0 : 30 },
+    visible: (delay: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: reduce ? 0 : 0.9, delay: reduce ? 0 : delay, ease: 'easeOut' as const },
+    }),
+  }
 }
 
 export function Hero() {
+  const fadeUp = useFadeUp()
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32 pb-16 overflow-hidden"
@@ -28,8 +31,10 @@ export function Hero() {
         playsInline
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover z-0"
-        src={VIDEO_SRC}
-      />
+      >
+        <source src="/videos/hero.webm" type="video/webm" />
+        <source src={VIDEO_SRC} type="video/mp4" />
+      </video>
 
       {/* Dark overlay for text legibility */}
       <div className="absolute inset-0 z-[1] pointer-events-none" style={{ background: 'rgba(0,0,0,0.48)' }} />
@@ -55,7 +60,7 @@ export function Hero() {
       {/* Headline */}
       <motion.h1
         className="relative z-[2] font-heading font-light leading-[1.1] tracking-[0.02em] mb-8 text-white"
-        style={{ fontSize: 'clamp(3rem, 7vw, 6.5rem)' }}
+        style={{ fontSize: 'clamp(3rem, 7vw, 6.5rem)', textWrap: 'balance' }}
         variants={fadeUp}
         initial="hidden"
         animate="visible"
@@ -106,7 +111,7 @@ export function Hero() {
           className="text-[0.65rem] tracking-[0.2em] uppercase font-bold px-10 py-4 rounded-[2px] border transition-colors text-pm-gold"
           style={{ borderColor: 'var(--pm-gold-dim)' }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(var(--pm-gold-rgb, 242,216,120),0.08)'
+            e.currentTarget.style.background = 'rgba(var(--pm-gold-rgb),0.08)'
             e.currentTarget.style.borderColor = 'var(--pm-gold)'
           }}
           onMouseLeave={(e) => {
@@ -128,7 +133,7 @@ export function Hero() {
       >
         <motion.div
           className="w-px h-[50px]"
-          style={{ background: 'linear-gradient(to bottom, transparent, var(--pm-purple))' }}
+          style={{ background: 'linear-gradient(to bottom, transparent, var(--pm-purple))', willChange: 'opacity' }}
           animate={{ opacity: [0.3, 1, 0.3] }}
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
         />

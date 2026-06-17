@@ -1,6 +1,7 @@
 import { getStripe } from '@/lib/stripe'
-import { getPayload } from 'payload'
-import config from '@payload-config'
+import { db } from '@/lib/db'
+import { bookings } from '@/lib/db/schema'
+import { eq } from 'drizzle-orm'
 import type Stripe from 'stripe'
 
 // Never cache webhook responses — each POST is a unique event
@@ -37,16 +38,13 @@ export async function POST(req: Request) {
 
 async function handlePaymentIntentSucceeded(pi: Stripe.PaymentIntent) {
   try {
-    const payload = await getPayload({ config })
+    const existing = await db
+      .select({ id: bookings.id })
+      .from(bookings)
+      .where(eq(bookings.paymentIntentId, pi.id))
+      .limit(1)
 
-    const { docs } = await payload.find({
-      collection: 'bookings',
-      where: { paymentIntentId: { equals: pi.id } },
-      limit: 1,
-      overrideAccess: true,
-    })
-
-    if (docs.length === 0) {
+    if (existing.length === 0) {
       console.warn(
         `[stripe-webhook] No booking found for PaymentIntent ${pi.id}. ` +
           `Booking may not have been created yet or the ID is mismatched.`,
@@ -54,14 +52,12 @@ async function handlePaymentIntentSucceeded(pi: Stripe.PaymentIntent) {
       return
     }
 
-    await payload.update({
-      collection: 'bookings',
-      id: docs[0].id,
-      data: { status: 'confirmed' },
-      overrideAccess: true,
-    })
+    await db
+      .update(bookings)
+      .set({ status: 'confirmed', updatedAt: new Date() })
+      .where(eq(bookings.id, existing[0].id))
 
-    console.log(`[stripe-webhook] Booking ${docs[0].id} confirmed via PaymentIntent ${pi.id}`)
+    console.log(`[stripe-webhook] Booking ${existing[0].id} confirmed via PaymentIntent ${pi.id}`)
   } catch (err) {
     console.error('[stripe-webhook] Failed to confirm booking:', err)
     // Re-throw so Stripe sees a 500 and retries the event

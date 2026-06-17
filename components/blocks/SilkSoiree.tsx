@@ -55,19 +55,19 @@ export function SilkSoiree() {
         >
           <p
             className="text-[0.6rem] tracking-[0.35em] uppercase mb-3"
-            style={{ color: 'var(--pm-silk-red-dim)' }}
+            style={{ color: 'var(--pm-silk-red)' }}
           >
             A Partymoon experience
           </p>
           <h2
             className="font-heading font-light italic leading-[1.2] mb-6"
-            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--pm-silk-red)' }}
+            style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', color: 'var(--pm-silk-red)', textWrap: 'balance' }}
           >
             Silk Soiree
           </h2>
           <p
             className="text-[0.75rem] tracking-[0.08em] leading-[2] max-w-[500px]"
-            style={{ color: 'rgba(255,255,255,0.55)' }}
+            style={{ color: 'rgba(255,255,255,0.65)' }}
           >
             Exclusively for professional women. You spend your working life organising everything for
             everyone else. This weekend, let us handle every single detail — you simply arrive and enjoy
@@ -147,7 +147,7 @@ export function SilkSoiree() {
               </div>
               <p
                 className="text-[0.65rem] tracking-[0.08em] leading-[1.8]"
-                style={{ color: 'rgba(255,255,255,0.45)' }}
+                style={{ color: 'rgba(255,255,255,0.60)' }}
               >
                 {desc}
               </p>

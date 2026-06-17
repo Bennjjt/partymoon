@@ -39,10 +39,11 @@ export function HowItWorks() {
         </p>
         <h2
           className="font-heading font-light leading-[1.2]"
-          style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)' }}
+          style={{ fontSize: 'clamp(2rem, 4vw, 3.5rem)', textWrap: 'balance' }}
         >
           How it <em className="italic">works</em>
         </h2>
+        <div className="w-16 h-[3px] mt-5 mx-auto" style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-gold))' }} />
       </RevealOnScroll>
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 mt-16">
@@ -55,7 +56,7 @@ export function HowItWorks() {
               {num}
             </p>
             <h3 className="font-heading text-[1.2rem] text-white mb-3">{title}</h3>
-            <p className="text-[0.7rem] tracking-[0.05em] leading-[2] text-white/50">{desc}</p>
+            <p className="text-[0.7rem] tracking-[0.05em] leading-[2] text-white/60">{desc}</p>
           </RevealOnScroll>
         ))}
       </div>

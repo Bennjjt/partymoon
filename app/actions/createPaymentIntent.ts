@@ -1,8 +1,8 @@
 'use server'
 
 import { getStripe } from '@/lib/stripe'
-import { getPayload } from 'payload'
-import config from '@payload-config'
+import { db } from '@/lib/db'
+import { bookings } from '@/lib/db/schema'
 import { z } from 'zod'
 
 const schema = z.object({
@@ -29,7 +29,6 @@ export async function createPaymentIntent(
   }
 
   const { tripId, name, email, partySize, depositAmount } = parsed.data
-  const tripIdNumeric = !isNaN(Number(tripId)) ? Number(tripId) : undefined
 
   try {
     const paymentIntent = await getStripe().paymentIntents.create({
@@ -43,19 +42,15 @@ export async function createPaymentIntent(
       },
     })
 
-    const payload = await getPayload({ config })
-    await payload.create({
-      collection: 'bookings',
-      data: {
-        customerName: name,
-        customerEmail: email,
-        tripId: tripIdNumeric,  // numeric Payload Trip doc ID (undefined for non-trip bookings)
-        partySize,
-        depositAmount,
-        paymentIntentId: paymentIntent.id,
-        status: 'pending',
-      },
-      overrideAccess: true,
+    await db.insert(bookings).values({
+      customerName: name,
+      customerEmail: email,
+      // tripId is a Sanity document _id string
+      tripId,
+      partySize,
+      depositAmount,
+      paymentIntentId: paymentIntent.id,
+      status: 'pending',
     })
 
     return { success: true, clientSecret: paymentIntent.client_secret! }

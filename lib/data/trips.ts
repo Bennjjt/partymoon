@@ -1,3 +1,5 @@
+import type { PortableTextBlock } from 'next-sanity'
+
 export interface CoverImage {
   url: string
   alt: string
@@ -41,7 +43,7 @@ export interface SignatureExperienceStat {
 export interface SignatureExperience {
   eyebrow?: string | null
   heading?: string | null
-  description?: unknown   // Lexical richText JSON
+  description?: PortableTextBlock[]
   stats?: SignatureExperienceStat[]
 }
 
@@ -92,7 +94,7 @@ export interface Trip {
 
   // Detail page fields
   heroTagline?: string | null
-  introText?: unknown
+  introText?: PortableTextBlock[]
   inclusions?: TripInclusion[]
   clubs?: TripClub[]
   hotelOptions?: TripHotelOption[]
@@ -100,7 +102,7 @@ export interface Trip {
   spa?: TripSpa
   diningExperiences?: TripDiningExperience[]
   hosts?: TripHost[]
-  summary?: unknown
+  summary?: PortableTextBlock[]
   itinerary?: Array<{
     id?: string
     tag?: string | null
@@ -134,21 +136,6 @@ export function formatPrice(pounds: number): string {
   return `£${pounds.toLocaleString('en-GB', { maximumFractionDigits: 0 })}`
 }
 
-export function renderRichText(value: unknown): string {
-  if (!value || typeof value !== 'object') return ''
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const root = (value as any).root
-  if (!root?.children) return ''
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return root.children.map((node: any) => {
-    if (node.type === 'paragraph') {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return node.children?.map((child: any) => child.text ?? '').join('') ?? ''
-    }
-    return ''
-  }).filter(Boolean).join('\n\n')
-}
-
 // ── Fallback gradients ────────────────────────────────────────────
 
 const GRADIENTS: Record<string, string> = {
@@ -158,7 +145,10 @@ const GRADIENTS: Record<string, string> = {
   marbella: 'linear-gradient(160deg,#280808 0%,#381212 50%,#220a22 100%)',
   cannes:   'linear-gradient(160deg,#081a1a 0%,#183018 50%,#081820 100%)',
   amalfi:   'linear-gradient(160deg,#081808 0%,#183020 50%,#081028 100%)',
-  amsterdam:'linear-gradient(160deg,#0d0820 0%,#1a0d35 50%,#0a0818 100%)',
+  amsterdam:  'linear-gradient(160deg,#0d0820 0%,#1a0d35 50%,#0a0818 100%)',
+  copenhagen: 'linear-gradient(160deg,#081828 0%,#102238 50%,#081420 100%)',
+  berlin:     'linear-gradient(160deg,#101010 0%,#1a1a22 50%,#0a0a10 100%)',
+  barcelona:  'linear-gradient(160deg,#280818 0%,#381220 50%,#200810 100%)',
 }
 
 const DEFAULT_GRADIENT = 'linear-gradient(160deg,#1a1535 0%,#0d1a35 50%,#0d0d28 100%)'
