@@ -56,7 +56,7 @@ export default async function HomePage({ searchParams }: PageProps) {
         <HowItWorks />
         <SilkSoiree />
         <Testimonials />
-        <WaitlistSection />
+        <WaitlistSection destinations={destinations} />
       </main>
       <Footer />
     </>
