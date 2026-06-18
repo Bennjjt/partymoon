@@ -1,26 +1,30 @@
 import { PortableText } from 'next-sanity'
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
-import type { SignatureExperience } from '@/lib/data/trips'
+import { SectionBg } from '@/components/blocks/trip/SectionBg'
+import type { SignatureExperience, CoverImage } from '@/lib/data/trips'
 
 interface TripSignatureExperienceProps {
   experience: SignatureExperience
+  bgImage?: CoverImage | null
 }
 
-export function TripSignatureExperience({ experience }: TripSignatureExperienceProps) {
+export function TripSignatureExperience({ experience, bgImage }: TripSignatureExperienceProps) {
   if (!experience.heading && !experience.description?.length) return null
 
   return (
     <div
       style={{
-        background: 'radial-gradient(ellipse at center bottom, rgba(var(--pm-purple-rgb),0.08) 0%, transparent 60%), var(--pm-midnight)',
+        background: bgImage ? 'transparent' : 'radial-gradient(ellipse at center bottom, rgba(var(--pm-purple-rgb),0.08) 0%, transparent 60%), var(--pm-midnight)',
         borderTop: '1px solid rgba(var(--pm-purple-rgb),0.1)',
         borderBottom: '1px solid rgba(var(--pm-purple-rgb),0.1)',
         position: 'relative',
+        overflow: 'hidden',
         zIndex: 2,
       }}
     >
-      <div className="px-6 md:px-12 py-24">
+      <SectionBg bgImage={bgImage} />
+      <div className="px-6 md:px-12 py-24 relative" style={{ zIndex: 1 }}>
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-20 items-start">
           {/* Left: text */}
           <div>
@@ -53,7 +57,7 @@ export function TripSignatureExperience({ experience }: TripSignatureExperienceP
           {/* Right: stats panel */}
           {experience.stats && experience.stats.length > 0 && (
             <RevealOnScroll delay={0.15}>
-              <div style={{ border: '1px solid rgba(var(--pm-purple-rgb),0.15)' }}>
+              <div style={{ border: '1px solid rgba(var(--pm-purple-rgb),0.15)', background: bgImage ? 'rgba(8,8,8,0.62)' : 'transparent' }}>
                 {experience.stats.map((stat, i) => (
                   <div
                     key={stat.id ?? i}
@@ -67,7 +71,7 @@ export function TripSignatureExperience({ experience }: TripSignatureExperienceP
                       <p className="text-[0.6rem] tracking-[0.35em] uppercase mb-1 font-medium" style={{ color: 'rgba(var(--pm-purple-rgb),0.6)' }}>
                         {stat.label}
                       </p>
-                      <p className="text-[0.9rem] font-light" style={{ color: 'rgba(232,232,240,0.7)' }}>{stat.value}</p>
+                      <p className="text-[0.9rem] font-light" style={{ color: 'rgba(232,232,240,0.65)' }}>{stat.value}</p>
                     </div>
                     {stat.tag && (
                       <span

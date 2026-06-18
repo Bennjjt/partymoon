@@ -12,6 +12,8 @@ interface TripHeroSectionProps {
   coverImage: CoverImage | null
   gradient: string
   priceFrom: string
+  regionSvgPath?: string | null
+  regionSvgViewBox?: string | null
 }
 
 export function TripHeroSection({
@@ -21,6 +23,8 @@ export function TripHeroSection({
   coverImage,
   gradient,
   priceFrom,
+  regionSvgPath,
+  regionSvgViewBox,
 }: TripHeroSectionProps) {
   const reduce = useReducedMotion()
 
@@ -79,6 +83,34 @@ export function TripHeroSection({
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to right, rgba(8,8,8,0.4) 0%, transparent 32%)' }} />
       {/* Right: protects tagline — always busy in crowd/venue shots */}
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(to left, rgba(8,8,8,0.6) 0%, transparent 48%)' }} />
+
+      {/* ── Country silhouette overlay ───────────────────────── */}
+      {regionSvgPath && regionSvgViewBox && (
+        <motion.div
+          className="absolute inset-0 pointer-events-none z-[1] overflow-hidden"
+          {...fade(0.6)}
+        >
+          <svg
+            viewBox={regionSvgViewBox}
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              right: '-5%',
+              bottom: '-10%',
+              width: 'clamp(280px, 45vw, 560px)',
+              height: 'clamp(280px, 45vw, 560px)',
+            }}
+          >
+            <path
+              d={regionSvgPath}
+              fill="rgba(201,168,76,0.055)"
+              stroke="rgba(201,168,76,0.18)"
+              strokeWidth="3"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </motion.div>
+      )}
 
       {/* ── Zone 1: Top-left eyebrow ──────────────────────────── */}
       <motion.p

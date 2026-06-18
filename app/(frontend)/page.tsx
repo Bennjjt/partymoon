@@ -42,8 +42,12 @@ export default async function HomePage({ searchParams }: PageProps) {
       label: trip.destination,
       value: trip.slug,
       season: MONTH_FMT.format(new Date(trip.startDate)),
+      svgPath: trip.regionSvgPath ?? null,
+      svgViewBox: trip.regionSvgViewBox ?? null,
     })
   }
+
+  const activeDest = destinations.find((d) => d.value === dest)
 
   return (
     <>
@@ -51,7 +55,12 @@ export default async function HomePage({ searchParams }: PageProps) {
       <main>
         <Hero />
         <DestinationStrip destinations={destinations} />
-        <TripsSection trips={trips} dest={dest} />
+        <TripsSection
+          trips={trips}
+          dest={dest}
+          svgPath={activeDest?.svgPath}
+          svgViewBox={activeDest?.svgViewBox}
+        />
         <PackagesSection />
         <HowItWorks />
         <SilkSoiree />

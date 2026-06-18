@@ -15,6 +15,8 @@ export interface DestinationOption {
   label: string
   value: string  // matches Trip.slug; empty string = "all"
   season: string | null
+  svgPath?: string | null
+  svgViewBox?: string | null
 }
 
 interface Props {
@@ -100,12 +102,14 @@ export function DestinationStrip({ destinations }: Props) {
         viewport={{ once: true, margin: '-30px' }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
       >
-        {options.map(({ label, value, season }) => (
+        {options.map(({ label, value, season, svgPath, svgViewBox }) => (
           <DestPill
             key={value || 'all'}
             label={label}
             value={value}
             season={season}
+            svgPath={svgPath}
+            svgViewBox={svgViewBox}
             active={activeDest === value}
             onSelect={handleSelect}
           />
@@ -119,12 +123,16 @@ function DestPill({
   label,
   value,
   season,
+  svgPath,
+  svgViewBox,
   active,
   onSelect,
 }: {
   label: string
   value: string
   season: string | null
+  svgPath?: string | null
+  svgViewBox?: string | null
   active: boolean
   onSelect: (value: string) => void
 }) {
@@ -144,10 +152,27 @@ function DestPill({
       }
       transition={{ duration: 0.18, ease: 'easeOut' }}
     >
-      <div
-        className="size-[5px] rounded-full flex-shrink-0"
-        style={{ background: active ? 'var(--pm-purple)' : 'var(--pm-purple-light)' }}
-      />
+      {svgPath && svgViewBox ? (
+        <svg
+          viewBox={svgViewBox}
+          aria-hidden="true"
+          className="flex-shrink-0"
+          style={{ width: 22, height: 22 }}
+        >
+          <path
+            d={svgPath}
+            fill={active ? 'rgba(201,168,76,0.55)' : 'rgba(201,168,76,0.28)'}
+            stroke={active ? '#c9a84c' : 'rgba(201,168,76,0.5)'}
+            strokeWidth="6"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ) : (
+        <div
+          className="size-[5px] rounded-full flex-shrink-0"
+          style={{ background: active ? 'var(--pm-purple)' : 'var(--pm-purple-light)' }}
+        />
+      )}
       {season ? (
         <>
           <span className="text-[0.6rem] tracking-[0.1em] font-medium text-white">{label}</span>

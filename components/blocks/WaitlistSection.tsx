@@ -65,13 +65,13 @@ export function WaitlistSection({ destinations = [] }: WaitlistSectionProps) {
   const handleSubmit = async (values: FormValues) => {
     setServerError('')
 
-    const formId = process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID
-    if (!formId) {
+    const projectId = process.env.NEXT_PUBLIC_FORMSPREE_PROJECT_ID
+    if (!projectId) {
       setServerError('Form is not configured. Please contact us directly.')
       return
     }
 
-    const res = await fetch(`https://formspree.io/f/${formId}`, {
+    const res = await fetch(`https://formspree.io/p/${projectId}/f/enquiry`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({

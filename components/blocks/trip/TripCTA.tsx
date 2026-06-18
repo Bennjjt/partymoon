@@ -39,7 +39,7 @@ export function TripCTA({ destination, priceFrom, deposit }: TripCTAProps) {
           IN {destination.toUpperCase()}.
         </p>
 
-        <p className="font-heading italic text-[1.2rem] mb-10 mx-auto max-w-sm" style={{ color: 'rgba(232,232,240,0.6)', lineHeight: 1.7 }}>
+        <p className="font-heading italic text-[1.2rem] mb-10 mx-auto max-w-sm" style={{ color: 'rgba(232,232,240,0.65)', lineHeight: 1.7 }}>
           Limited spaces per trip. Enquire now for availability.
         </p>
 

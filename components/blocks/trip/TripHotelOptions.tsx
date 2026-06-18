@@ -1,18 +1,21 @@
 import { MapPin } from 'lucide-react'
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
-import type { TripHotelOption } from '@/lib/data/trips'
+import { SectionBg } from '@/components/blocks/trip/SectionBg'
+import type { TripHotelOption, CoverImage } from '@/lib/data/trips'
 
 interface TripHotelOptionsProps {
   hotelOptions: TripHotelOption[]
+  bgImage?: CoverImage | null
 }
 
-export function TripHotelOptions({ hotelOptions }: TripHotelOptionsProps) {
+export function TripHotelOptions({ hotelOptions, bgImage }: TripHotelOptionsProps) {
   if (!hotelOptions.length) return null
 
   return (
-    <section style={{ background: 'var(--pm-deep)', position: 'relative', zIndex: 2 }}>
-      <div className="px-6 md:px-12 py-24">
+    <section style={{ background: bgImage ? 'transparent' : 'var(--pm-deep)', position: 'relative', overflow: 'hidden', zIndex: 2 }}>
+      <SectionBg bgImage={bgImage} />
+      <div className="px-6 md:px-12 py-24 relative" style={{ zIndex: 1 }}>
         <TripSectionHeader
           eyebrow="Where You Sleep"
           headline="THE HOTEL."
@@ -20,12 +23,18 @@ export function TripHotelOptions({ hotelOptions }: TripHotelOptionsProps) {
           description="Your Partymoon hotel is chosen for luxury, location, and spa access that genuinely delivers."
         />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          className="grid sm:grid-cols-2 lg:grid-cols-3"
+          style={bgImage
+            ? { gap: '1.5px', background: 'rgba(var(--pm-purple-rgb),0.15)' }
+            : { gap: '1.5rem' }
+          }
+        >
           {hotelOptions.map((hotel, i) => (
             <RevealOnScroll key={hotel.id ?? i} delay={i * 0.08} className="h-full">
               <div
                 className="h-full p-8 relative overflow-hidden transition-all duration-300 group"
-                style={{ background: 'var(--pm-navy)', border: '1px solid rgba(var(--pm-purple-rgb),0.2)' }}
+                style={{ background: bgImage ? 'rgba(8,8,8,0.78)' : 'var(--pm-navy)', border: '1px solid rgba(var(--pm-purple-rgb),0.2)' }}
               >
                 <div
                   className="absolute top-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300"

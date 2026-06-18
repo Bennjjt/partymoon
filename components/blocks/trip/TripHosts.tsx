@@ -1,26 +1,30 @@
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
 import { TripIcon } from '@/components/ui/TripIcon'
-import type { TripHost } from '@/lib/data/trips'
+import { SectionBg } from '@/components/blocks/trip/SectionBg'
+import type { TripHost, CoverImage } from '@/lib/data/trips'
 
 interface TripHostsProps {
   hosts: TripHost[]
+  bgImage?: CoverImage | null
 }
 
-export function TripHosts({ hosts }: TripHostsProps) {
+export function TripHosts({ hosts, bgImage }: TripHostsProps) {
   if (!hosts.length) return null
 
   return (
     <section
       style={{
-        background: 'var(--pm-deep)',
+        background: bgImage ? 'transparent' : 'var(--pm-deep)',
         borderTop: '1px solid rgba(var(--pm-purple-rgb),0.15)',
         borderBottom: '1px solid rgba(var(--pm-purple-rgb),0.15)',
         position: 'relative',
+        overflow: 'hidden',
         zIndex: 2,
       }}
     >
-      <div className="px-6 md:px-12 py-24">
+      <SectionBg bgImage={bgImage} />
+      <div className="px-6 md:px-12 py-24 relative" style={{ zIndex: 1 }}>
         <TripSectionHeader
           eyebrow="All Weekend, Both Nights"
           headline="YOUR HOSTS."
@@ -63,7 +67,7 @@ export function TripHosts({ hosts }: TripHostsProps) {
 
         <RevealOnScroll delay={0.2}>
           <div className="mt-8 p-10 text-center" style={{ background: 'rgba(var(--pm-purple-rgb),0.06)', border: '1px solid rgba(var(--pm-purple-rgb),0.15)' }}>
-            <p className="font-heading italic text-[1.1rem] mb-3 mx-auto max-w-lg" style={{ color: 'rgba(232,232,240,0.7)', lineHeight: 1.8 }}>
+            <p className="font-heading italic text-[1.1rem] mb-3 mx-auto max-w-lg" style={{ color: 'rgba(232,232,240,0.65)', lineHeight: 1.8 }}>
               &ldquo;We don&rsquo;t just plan weekends. We host them, live them, and make sure every single person leaves having had the time of their life.&rdquo;
             </p>
             <span className="text-[0.6rem] tracking-[0.4em] uppercase font-medium" style={{ color: 'var(--pm-purple)' }}>

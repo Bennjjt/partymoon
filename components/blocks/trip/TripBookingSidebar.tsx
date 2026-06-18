@@ -45,7 +45,7 @@ export function TripBookingSidebar({ trip }: TripBookingSidebarProps) {
                   className="h-full rounded-full"
                   style={{
                     width: `${fillPct}%`,
-                    background: isSoldOut ? 'rgba(255,120,120,0.9)' : 'var(--pm-purple)',
+                    background: isSoldOut ? 'rgba(255,255,255,0.35)' : 'var(--pm-purple)',
                   }}
                 />
               </div>

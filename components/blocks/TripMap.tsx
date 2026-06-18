@@ -57,7 +57,12 @@ export default function TripMap({ latitude, longitude, destination }: TripMapPro
         zoom={13}
         scrollWheelZoom={false}
         zoomControl={false}
-        style={{ height: '100%', width: '100%' }}
+        dragging={false}
+        touchZoom={false}
+        doubleClickZoom={false}
+        keyboard={false}
+        boxZoom={false}
+        style={{ height: '100%', width: '100%', cursor: 'default' }}
         aria-label={`Map showing the location of ${destination}`}
       >
         <TileLayer url={TILE_URL} attribution={ATTRIBUTION} />
