@@ -63,27 +63,37 @@ export default async function TripDetailPage({ params }: Props) {
           coverImage={trip.coverImage}
           gradient={trip.gradient}
           priceFrom={formatPrice(trip.priceFrom)}
+          regionSvgPath={trip.regionSvgPath}
+          regionSvgViewBox={trip.regionSvgViewBox}
         />
 
         <TripTicker destination={trip.destination} inclusions={trip.inclusions} />
 
-        {!!trip.introText && <TripIntro destination={trip.destination} introText={trip.introText} />}
+        {!!trip.introText && (
+          <TripIntro
+            destination={trip.destination}
+            introText={trip.introText}
+            introImages={trip.introImages}
+            coverImage={trip.coverImage}
+            gallery={trip.gallery}
+          />
+        )}
 
-        {trip.inclusions?.length ? <TripInclusionsDetail inclusions={trip.inclusions} /> : null}
+        {trip.inclusions?.length ? <TripInclusionsDetail inclusions={trip.inclusions} bgImage={trip.inclusionsBgImage} /> : null}
 
-        {trip.itinerary?.length ? <TripItinerary itinerary={trip.itinerary} /> : null}
+        {trip.itinerary?.length ? <TripItinerary itinerary={trip.itinerary} bgImage={trip.itineraryBgImage} /> : null}
 
-        {trip.clubs?.length ? <TripClubs clubs={trip.clubs} /> : null}
+        {trip.clubs?.length ? <TripClubs clubs={trip.clubs} bgImage={trip.clubsBgImage} /> : null}
 
-        {trip.hotelOptions?.length ? <TripHotelOptions hotelOptions={trip.hotelOptions} /> : null}
+        {trip.hotelOptions?.length ? <TripHotelOptions hotelOptions={trip.hotelOptions} bgImage={trip.hotelOptionsBgImage} /> : null}
 
-        {trip.signatureExperience && <TripSignatureExperience experience={trip.signatureExperience} />}
+        {trip.signatureExperience && <TripSignatureExperience experience={trip.signatureExperience} bgImage={trip.signatureExperienceBgImage} />}
 
-        {trip.spa && <TripSpa spa={trip.spa} />}
+        {trip.spa && <TripSpa spa={trip.spa} bgImage={trip.spaBgImage} />}
 
-        {trip.diningExperiences?.length ? <TripDining diningExperiences={trip.diningExperiences} /> : null}
+        {trip.diningExperiences?.length ? <TripDining diningExperiences={trip.diningExperiences} bgImage={trip.diningBgImage} /> : null}
 
-        {trip.hosts?.length ? <TripHosts hosts={trip.hosts} /> : null}
+        {trip.hosts?.length ? <TripHosts hosts={trip.hosts} bgImage={trip.hostsBgImage} /> : null}
 
         {trip.inclusions?.length ? <TripInclusionsSummary inclusions={trip.inclusions} /> : null}
 

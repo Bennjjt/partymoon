@@ -11,21 +11,17 @@ import { motion } from 'framer-motion'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 
-interface Destination {
+export interface DestinationOption {
   label: string
   value: string  // matches Trip.slug; empty string = "all"
   season: string | null
+  svgPath?: string | null
+  svgViewBox?: string | null
 }
 
-const DESTINATIONS: Destination[] = [
-  { label: 'All cities', value: '', season: null },
-  { label: 'Ibiza', value: 'ibiza', season: 'May – Sept' },
-  { label: 'Mykonos', value: 'mykonos', season: 'June – Sept' },
-  { label: 'Monaco', value: 'monaco', season: 'May – Aug' },
-  { label: 'Marbella', value: 'marbella', season: 'Apr – Oct' },
-  { label: 'Cannes', value: 'cannes', season: 'May – Sept' },
-  { label: 'Amalfi', value: 'amalfi', season: 'June – Sept' },
-]
+interface Props {
+  destinations: DestinationOption[]
+}
 
 // base-ui Select doesn't accept empty string as a controlled value, so we
 // use a sentinel for the "All cities" option and map it on the way in/out.
@@ -39,7 +35,7 @@ function fromSelectValue(val: string) {
   return val === ALL_VALUE ? '' : val
 }
 
-export function DestinationStrip() {
+export function DestinationStrip({ destinations }: Props) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const activeDest = searchParams.get('dest') ?? ''
@@ -57,6 +53,9 @@ export function DestinationStrip() {
     },
     [router, searchParams],
   )
+
+  const allOption: DestinationOption = { label: 'All cities', value: '', season: null }
+  const options = [allOption, ...destinations]
 
   return (
     <div
@@ -80,7 +79,7 @@ export function DestinationStrip() {
             <SelectValue placeholder="All cities" />
           </SelectTrigger>
           <SelectContent>
-            {DESTINATIONS.map(({ label, value }) => (
+            {options.map(({ label, value }) => (
               <SelectItem
                 key={value || ALL_VALUE}
                 value={toSelectValue(value)}
@@ -103,12 +102,14 @@ export function DestinationStrip() {
         viewport={{ once: true, margin: '-30px' }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
       >
-        {DESTINATIONS.map(({ label, value, season }) => (
+        {options.map(({ label, value, season, svgPath, svgViewBox }) => (
           <DestPill
             key={value || 'all'}
             label={label}
             value={value}
             season={season}
+            svgPath={svgPath}
+            svgViewBox={svgViewBox}
             active={activeDest === value}
             onSelect={handleSelect}
           />
@@ -122,12 +123,16 @@ function DestPill({
   label,
   value,
   season,
+  svgPath,
+  svgViewBox,
   active,
   onSelect,
 }: {
   label: string
   value: string
   season: string | null
+  svgPath?: string | null
+  svgViewBox?: string | null
   active: boolean
   onSelect: (value: string) => void
 }) {
@@ -135,7 +140,6 @@ function DestPill({
     <motion.button
       role="listitem"
       onClick={() => onSelect(value)}
-      aria-pressed={active}
       className="flex items-center gap-3 px-4 py-[0.55rem] border rounded-[2px] cursor-pointer whitespace-nowrap"
       style={{
         borderColor: active ? 'var(--pm-purple)' : 'var(--pm-glass-border)',
@@ -148,10 +152,27 @@ function DestPill({
       }
       transition={{ duration: 0.18, ease: 'easeOut' }}
     >
-      <div
-        className="size-[5px] rounded-full flex-shrink-0"
-        style={{ background: active ? 'var(--pm-purple)' : 'var(--pm-purple-light)' }}
-      />
+      {svgPath && svgViewBox ? (
+        <svg
+          viewBox={svgViewBox}
+          aria-hidden="true"
+          className="flex-shrink-0"
+          style={{ width: 22, height: 22 }}
+        >
+          <path
+            d={svgPath}
+            fill={active ? 'rgba(201,168,76,0.55)' : 'rgba(201,168,76,0.28)'}
+            stroke={active ? '#c9a84c' : 'rgba(201,168,76,0.5)'}
+            strokeWidth="6"
+            strokeLinejoin="round"
+          />
+        </svg>
+      ) : (
+        <div
+          className="size-[5px] rounded-full flex-shrink-0"
+          style={{ background: active ? 'var(--pm-purple)' : 'var(--pm-purple-light)' }}
+        />
+      )}
       {season ? (
         <>
           <span className="text-[0.6rem] tracking-[0.1em] font-medium text-white">{label}</span>

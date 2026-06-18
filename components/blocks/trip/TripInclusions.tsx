@@ -1,34 +1,37 @@
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
 import { TripIcon } from '@/components/ui/TripIcon'
-import type { TripInclusion } from '@/lib/data/trips'
+import { SectionBg } from '@/components/blocks/trip/SectionBg'
+import type { TripInclusion, CoverImage } from '@/lib/data/trips'
 
 interface TripInclusionsProps {
   inclusions: TripInclusion[]
+  bgImage?: CoverImage | null
 }
 
 /** Full detail grid — "What's In It" */
-export function TripInclusionsDetail({ inclusions }: TripInclusionsProps) {
+export function TripInclusionsDetail({ inclusions, bgImage }: TripInclusionsProps) {
   if (!inclusions.length) return null
   return (
-    <section style={{ background: 'var(--pm-midnight)', position: 'relative', zIndex: 2 }}>
-      <div className="px-6 md:px-12 py-24">
+    <section style={{ background: bgImage ? 'transparent' : 'var(--pm-midnight)', position: 'relative', overflow: 'hidden', zIndex: 2 }}>
+      <SectionBg bgImage={bgImage} />
+      <div className="px-6 md:px-12 py-24 relative" style={{ zIndex: 1 }}>
         <TripSectionHeader eyebrow="The Full Package" headline="EVERYTHING." sub="included." />
 
         <div
-          className="grid"
+          className="flex flex-wrap"
           style={{
-            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
             gap: '1px',
             background: 'rgba(var(--pm-purple-rgb),0.15)',
             border: '1px solid rgba(var(--pm-purple-rgb),0.15)',
           }}
         >
           {inclusions.map((item, i) => (
-            <RevealOnScroll key={item.id ?? i} delay={i * 0.05} className="h-full">
+            <div key={item.id ?? i} style={{ flex: '1 1 19%', minWidth: '220px' }}>
+            <RevealOnScroll delay={i * 0.05} className="h-full">
               <div
                 className="h-full p-9 relative overflow-hidden transition-colors duration-300 group"
-                style={{ background: 'var(--pm-deep)' }}
+                style={{ background: bgImage ? 'rgba(8,8,8,0.78)' : 'var(--pm-deep)' }}
               >
                 <div
                   className="absolute bottom-0 left-0 right-0 h-[2px] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
@@ -51,6 +54,7 @@ export function TripInclusionsDetail({ inclusions }: TripInclusionsProps) {
                 ) : null}
               </div>
             </RevealOnScroll>
+            </div>
           ))}
         </div>
       </div>
@@ -95,7 +99,7 @@ export function TripInclusionsSummary({ inclusions }: TripInclusionsProps) {
             className="mt-6 px-6 py-4 flex items-center gap-4"
             style={{ border: '1px solid rgba(var(--pm-purple-rgb),0.12)' }}
           >
-            <span className="size-2 rounded-full flex-shrink-0" style={{ background: 'var(--pm-purple)', boxShadow: '0 0 8px var(--pm-purple)' }} />
+            <span className="size-2 rounded-full flex-shrink-0" style={{ background: 'var(--pm-purple)' }} />
             <p className="text-[0.85rem] font-light italic" style={{ color: 'rgba(232,232,240,0.55)' }}>
               All packages are fully inclusive. Group sizes are kept small on purpose — this is a hosted experience, not a coach trip. Spaces go quickly.
             </p>

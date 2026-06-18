@@ -1,17 +1,20 @@
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
-import type { TripDiningExperience } from '@/lib/data/trips'
+import { SectionBg } from '@/components/blocks/trip/SectionBg'
+import type { TripDiningExperience, CoverImage } from '@/lib/data/trips'
 
 interface TripDiningProps {
   diningExperiences: TripDiningExperience[]
+  bgImage?: CoverImage | null
 }
 
-export function TripDining({ diningExperiences }: TripDiningProps) {
+export function TripDining({ diningExperiences, bgImage }: TripDiningProps) {
   if (!diningExperiences.length) return null
 
   return (
-    <section style={{ background: 'var(--pm-deep)', position: 'relative', zIndex: 2 }}>
-      <div className="px-6 md:px-12 py-24">
+    <section style={{ background: bgImage ? 'transparent' : 'var(--pm-deep)', position: 'relative', overflow: 'hidden', zIndex: 2 }}>
+      <SectionBg bgImage={bgImage} />
+      <div className="px-6 md:px-12 py-24 relative" style={{ zIndex: 1 }}>
         <TripSectionHeader eyebrow="Two Evenings" headline="THE FOOD." sub="always worth it." />
 
         <div style={{ background: 'rgba(var(--pm-purple-rgb),0.1)' }} className="flex flex-col gap-[1.5px]">

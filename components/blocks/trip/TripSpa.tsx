@@ -1,17 +1,20 @@
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
-import type { TripSpa as TripSpaType } from '@/lib/data/trips'
+import { SectionBg } from '@/components/blocks/trip/SectionBg'
+import type { TripSpa as TripSpaType, CoverImage } from '@/lib/data/trips'
 
 interface TripSpaProps {
   spa: TripSpaType
+  bgImage?: CoverImage | null
 }
 
-export function TripSpa({ spa }: TripSpaProps) {
+export function TripSpa({ spa, bgImage }: TripSpaProps) {
   if (!spa.heading && !spa.description) return null
 
   return (
-    <section style={{ background: 'var(--pm-deep)', position: 'relative', zIndex: 2 }}>
-      <div className="px-6 md:px-12 py-24">
+    <section style={{ background: bgImage ? 'transparent' : 'var(--pm-deep)', position: 'relative', overflow: 'hidden', zIndex: 2 }}>
+      <SectionBg bgImage={bgImage} />
+      <div className="px-6 md:px-12 py-24 relative" style={{ zIndex: 1 }}>
         <TripSectionHeader
           eyebrow={spa.eyebrow ?? ''}
           headline={spa.heading ?? ''}
@@ -44,9 +47,9 @@ export function TripSpa({ spa }: TripSpaProps) {
                   <div key={i} className="flex items-start gap-3">
                     <span
                       className="size-1 rounded-full flex-shrink-0 mt-2.5"
-                      style={{ background: 'var(--pm-purple)', boxShadow: '0 0 4px var(--pm-purple)' }}
+                      style={{ background: 'var(--pm-purple)' }}
                     />
-                    <span className="text-[0.9rem] font-light" style={{ color: 'rgba(232,232,240,0.6)' }}>{f.feature}</span>
+                    <span className="text-[0.9rem] font-light" style={{ color: 'rgba(232,232,240,0.65)' }}>{f.feature}</span>
                   </div>
                 ))}
               </div>

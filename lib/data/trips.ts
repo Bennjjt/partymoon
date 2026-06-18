@@ -94,7 +94,20 @@ export interface Trip {
 
   // Detail page fields
   heroTagline?: string | null
+  regionSvgPath?: string | null
+  regionSvgViewBox?: string | null
+
+  // Section background images (all optional — sections fall back to flat surface color)
+  inclusionsBgImage?: CoverImage | null
+  itineraryBgImage?: CoverImage | null
+  clubsBgImage?: CoverImage | null
+  hotelOptionsBgImage?: CoverImage | null
+  signatureExperienceBgImage?: CoverImage | null
+  spaBgImage?: CoverImage | null
+  diningBgImage?: CoverImage | null
+  hostsBgImage?: CoverImage | null
   introText?: PortableTextBlock[]
+  introImages?: CoverImage[]
   inclusions?: TripInclusion[]
   clubs?: TripClub[]
   hotelOptions?: TripHotelOption[]

@@ -52,6 +52,8 @@ const TRIPS_LIST_QUERY = defineQuery(/* groq */ `
     spotsTaken,
     priceFrom,
     deposit,
+    regionSvgPath,
+    regionSvgViewBox,
     coverImage {
       ${imageFragment}
     }
@@ -81,7 +83,20 @@ const TRIP_DETAIL_QUERY = defineQuery(/* groq */ `
     latitude,
     longitude,
     heroTagline,
+    regionSvgPath,
+    regionSvgViewBox,
+    inclusionsBgImage { ${imageFragment} },
+    itineraryBgImage { ${imageFragment} },
+    clubsBgImage { ${imageFragment} },
+    hotelOptionsBgImage { ${imageFragment} },
+    signatureExperienceBgImage { ${imageFragment} },
+    spaBgImage { ${imageFragment} },
+    diningBgImage { ${imageFragment} },
+    hostsBgImage { ${imageFragment} },
     introText,
+    introImages[] {
+      ${imageFragment}
+    },
     summary,
     coverImage {
       ${imageFragment}
@@ -209,7 +224,21 @@ function toTrip(doc: any): Trip {
     latitude: doc.latitude ?? null,
     longitude: doc.longitude ?? null,
     heroTagline: doc.heroTagline ?? null,
+    regionSvgPath: doc.regionSvgPath ?? null,
+    regionSvgViewBox: doc.regionSvgViewBox ?? null,
+    inclusionsBgImage: toCoverImage(doc.inclusionsBgImage),
+    itineraryBgImage: toCoverImage(doc.itineraryBgImage),
+    clubsBgImage: toCoverImage(doc.clubsBgImage),
+    hotelOptionsBgImage: toCoverImage(doc.hotelOptionsBgImage),
+    signatureExperienceBgImage: toCoverImage(doc.signatureExperienceBgImage),
+    spaBgImage: toCoverImage(doc.spaBgImage),
+    diningBgImage: toCoverImage(doc.diningBgImage),
+    hostsBgImage: toCoverImage(doc.hostsBgImage),
     introText: doc.introText ?? undefined,
+    introImages: Array.isArray(doc.introImages)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ? (doc.introImages as any[]).map(toCoverImage).filter(Boolean) as Trip['introImages']
+      : undefined,
     inclusions: Array.isArray(doc.inclusions)
       ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
         doc.inclusions.map((i: any) => ({

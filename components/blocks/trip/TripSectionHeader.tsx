@@ -53,7 +53,7 @@ export function TripSectionHeader({
           {subheading}
         </p>
       )}
-      <div className={`w-16 h-[3px] ${resolvedDividerClass}`} style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-purple))' }} />
+      <div className={`w-16 h-[3px] ${resolvedDividerClass}`} style={{ background: 'linear-gradient(to right, var(--pm-gold-dim), var(--pm-gold))' }} />
       {description && (
         <p className="text-[0.9rem] leading-[1.9] font-light max-w-xl mb-10" style={{ color: 'rgba(232,232,240,0.65)' }}>
           {description}
