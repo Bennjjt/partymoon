@@ -95,6 +95,7 @@ export interface Trip {
   // Detail page fields
   heroTagline?: string | null
   introText?: PortableTextBlock[]
+  introImages?: CoverImage[]
   inclusions?: TripInclusion[]
   clubs?: TripClub[]
   hotelOptions?: TripHotelOption[]

@@ -202,6 +202,28 @@ export const tripType = defineType({
         'Longer destination narrative shown in the "The Partymoon Way" intro section. 2–3 paragraphs.',
     }),
     defineField({
+      name: 'introImages',
+      title: 'Intro bento images',
+      type: 'array',
+      group: 'detail',
+      description:
+        'Up to 3 images shown in the bento grid alongside the intro text. Falls back to gallery images or the cover image if left empty.',
+      validation: (rule) => rule.max(3),
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: {hotspot: true},
+          fields: [
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alt text',
+            }),
+          ],
+        }),
+      ],
+    }),
+    defineField({
       name: 'summary',
       type: 'array',
       of: [defineArrayMember({type: 'block'})],

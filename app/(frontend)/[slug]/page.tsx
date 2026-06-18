@@ -67,7 +67,15 @@ export default async function TripDetailPage({ params }: Props) {
 
         <TripTicker destination={trip.destination} inclusions={trip.inclusions} />
 
-        {!!trip.introText && <TripIntro destination={trip.destination} introText={trip.introText} />}
+        {!!trip.introText && (
+          <TripIntro
+            destination={trip.destination}
+            introText={trip.introText}
+            introImages={trip.introImages}
+            coverImage={trip.coverImage}
+            gallery={trip.gallery}
+          />
+        )}
 
         {trip.inclusions?.length ? <TripInclusionsDetail inclusions={trip.inclusions} /> : null}
 

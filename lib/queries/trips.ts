@@ -82,6 +82,9 @@ const TRIP_DETAIL_QUERY = defineQuery(/* groq */ `
     longitude,
     heroTagline,
     introText,
+    introImages[] {
+      ${imageFragment}
+    },
     summary,
     coverImage {
       ${imageFragment}
@@ -210,6 +213,10 @@ function toTrip(doc: any): Trip {
     longitude: doc.longitude ?? null,
     heroTagline: doc.heroTagline ?? null,
     introText: doc.introText ?? undefined,
+    introImages: Array.isArray(doc.introImages)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ? (doc.introImages as any[]).map(toCoverImage).filter(Boolean) as Trip['introImages']
+      : undefined,
     inclusions: Array.isArray(doc.inclusions)
       ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
         doc.inclusions.map((i: any) => ({
