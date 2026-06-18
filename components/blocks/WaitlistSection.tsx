@@ -269,7 +269,7 @@ export function WaitlistSection({ destinations = [] }: WaitlistSectionProps) {
                               </svg>
                             )}
                           </button>
-                          <span className="text-[0.72rem] leading-[1.7] font-light" style={{ color: 'rgba(232,232,240,0.5)' }}>
+                          <span className="text-[0.72rem] leading-[1.7] font-light" style={{ color: 'rgba(232,232,240,0.72)' }}>
                             Keep me updated with new destinations, early access, and exclusive offers from Partymoon.
                           </span>
                         </label>
@@ -314,12 +314,12 @@ export function WaitlistSection({ destinations = [] }: WaitlistSectionProps) {
                         </button>
 
                         {/* Privacy notice */}
-                        <p className="text-[0.6rem] leading-[1.8] tracking-[0.02em] text-center" style={{ color: 'rgba(255,255,255,0.22)' }}>
+                        <p className="text-[0.6rem] leading-[1.8] tracking-[0.02em] text-center" style={{ color: 'rgba(255,255,255,0.5)' }}>
                           By submitting this form you agree to our{' '}
                           <Link
                             href="/privacy-policy"
-                            className="underline underline-offset-2 transition-colors hover:text-white/50"
-                            style={{ color: 'rgba(255,255,255,0.35)' }}
+                            className="underline underline-offset-2 transition-colors"
+                            style={{ color: 'var(--pm-purple-light)' }}
                           >
                             Privacy Policy
                           </Link>
