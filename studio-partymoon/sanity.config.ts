@@ -5,6 +5,7 @@ import {presentationTool} from 'sanity/presentation'
 import {schemaTypes} from './schemaTypes'
 
 const previewUrlOrigin = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
+const previewSecret = process.env.SANITY_STUDIO_PREVIEW_SECRET || ''
 
 export default defineConfig({
   name: 'default',
@@ -21,7 +22,7 @@ export default defineConfig({
         origin: previewUrlOrigin,
         preview: '/',
         previewMode: {
-          enable: '/api/draft-mode/enable',
+          enable: `/api/draft-mode/enable?secret=${previewSecret}`,
         },
       },
       resolve: {
