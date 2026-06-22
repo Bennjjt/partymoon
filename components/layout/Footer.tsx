@@ -1,24 +1,27 @@
-const DESTINATIONS = ['Ibiza', 'Mykonos', 'Monaco', 'Marbella', 'Cannes', 'Amalfi Coast']
+import Link from 'next/link'
+import { getPublishedTrips } from '@/lib/queries/trips'
+import type { TripsResult } from '@/lib/queries/trips'
 
 const EXPERIENCE = [
-  { label: 'Essential package', href: '#packages' },
-  { label: 'Premium package', href: '#packages' },
-  { label: 'Ultimate package', href: '#packages' },
-  { label: 'Silk Soiree', href: '#silk' },
-  { label: 'How it works', href: '#about' },
+  { label: 'How it works', href: '/#about' },
+  { label: 'Packages', href: '/#packages' },
+  { label: 'Silk Soirée', href: '/#silk' },
+  { label: 'Join the waitlist', href: '/#waitlist' },
 ]
 
 const COMPANY = [
-  { label: 'Join the waitlist', href: '#waitlist' },
-  { label: 'Contact us', href: '#' },
-  { label: 'Corporate bookings', href: '#' },
+  { label: 'Contact us', href: '/#waitlist' },
+  { label: 'Privacy policy', href: '/privacy-policy' },
+  { label: 'Cookie policy', href: '/cookie-policy' },
   { label: 'Terms & conditions', href: '#' },
-  { label: 'Privacy policy', href: '#' },
 ]
 
 const SOCIALS = ['Instagram', 'TikTok', 'YouTube', 'LinkedIn']
 
-export function Footer() {
+export async function Footer() {
+  const result: TripsResult = await getPublishedTrips()
+  const trips = result.status === 'ok' ? result.trips : []
+
   return (
     <footer
       className="border-t px-6 md:px-12 pt-16 pb-8"
@@ -39,7 +42,7 @@ export function Footer() {
           </p>
         </div>
 
-        {/* Destinations */}
+        {/* Destinations — CMS-driven */}
         <div>
           <p
             className="text-[0.6rem] tracking-[0.25em] uppercase mb-6"
@@ -48,14 +51,14 @@ export function Footer() {
             Destinations
           </p>
           <ul className="flex flex-col gap-3">
-            {DESTINATIONS.map((d) => (
-              <li key={d}>
-                <a
-                  href="#trips"
+            {trips.map((trip) => (
+              <li key={trip.slug}>
+                <Link
+                  href={`/${trip.slug}`}
                   className="text-[0.7rem] tracking-[0.08em] text-white/60 hover:text-white transition-colors"
                 >
-                  {d}
-                </a>
+                  {trip.destination}
+                </Link>
               </li>
             ))}
           </ul>
@@ -72,12 +75,12 @@ export function Footer() {
           <ul className="flex flex-col gap-3">
             {EXPERIENCE.map(({ label, href }) => (
               <li key={label}>
-                <a
+                <Link
                   href={href}
                   className="text-[0.7rem] tracking-[0.08em] text-white/60 hover:text-white transition-colors"
                 >
                   {label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
@@ -94,12 +97,12 @@ export function Footer() {
           <ul className="flex flex-col gap-3">
             {COMPANY.map(({ label, href }) => (
               <li key={label}>
-                <a
+                <Link
                   href={href}
                   className="text-[0.7rem] tracking-[0.08em] text-white/60 hover:text-white transition-colors"
                 >
                   {label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
