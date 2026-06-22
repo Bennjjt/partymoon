@@ -40,10 +40,11 @@ export default async function HomePage({ searchParams }: PageProps) {
   for (const trip of allTrips) {
     if (seen.has(trip.slug)) continue
     seen.add(trip.slug)
+    const startDate = new Date(trip.startDate)
     destinations.push({
       label: trip.destination,
       value: trip.slug,
-      season: MONTH_FMT.format(new Date(trip.startDate)),
+      season: Number.isNaN(startDate.getTime()) ? '' : MONTH_FMT.format(startDate),
       svgPath: trip.regionSvgPath ?? null,
       svgViewBox: trip.regionSvgViewBox ?? null,
     })
