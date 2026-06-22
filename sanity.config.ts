@@ -7,7 +7,6 @@ import { schemaTypes } from './sanity/schemaTypes'
 // Studio is embedded in the Next.js app, so Presentation can use a relative
 // origin and there's no cross-site iframe — no third-party cookie issues.
 const previewOrigin = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-const previewSecret = process.env.NEXT_PUBLIC_SANITY_PREVIEW_SECRET || ''
 
 export default defineConfig({
   name: 'default',
@@ -26,7 +25,7 @@ export default defineConfig({
         origin: previewOrigin,
         preview: '/',
         previewMode: {
-          enable: `/api/draft-mode/enable?secret=${previewSecret}`,
+          enable: '/api/draft-mode/enable',
         },
       },
       resolve: {
