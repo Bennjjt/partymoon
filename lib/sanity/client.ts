@@ -15,7 +15,7 @@ export const draftClient = createClient({
   apiVersion: '2026-05-15',
   useCdn: false,
   token: process.env.SANITY_API_READ_TOKEN,
-  perspective: 'previewDrafts',
+  perspective: 'drafts',
 })
 
 export function getClient(preview: boolean) {
