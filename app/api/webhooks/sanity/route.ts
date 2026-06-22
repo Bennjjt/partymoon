@@ -9,14 +9,19 @@ export async function POST(request: Request) {
     return new Response('Invalid signature', { status: 401 })
   }
 
-  // Fire-and-forget rebuild trigger — the webhook delivery shouldn't block on
-  // (or fail because of) Vercel's response, matching the Loops sync pattern
-  // used elsewhere in this codebase.
+  // Must be awaited: Vercel can terminate the function's execution context
+  // as soon as a Response is returned, so an un-awaited fetch here may never
+  // actually reach the deploy hook before the process is frozen/killed.
   const deployHookUrl = process.env.VERCEL_DEPLOY_HOOK_URL
   if (deployHookUrl) {
-    fetch(deployHookUrl, { method: 'POST' }).catch((err) => {
+    try {
+      const res = await fetch(deployHookUrl, { method: 'POST' })
+      if (!res.ok) {
+        console.error('[webhooks/sanity] Vercel deploy hook responded with', res.status)
+      }
+    } catch (err) {
       console.error('[webhooks/sanity] Vercel deploy hook failed:', err)
-    })
+    }
   } else {
     console.warn('[webhooks/sanity] VERCEL_DEPLOY_HOOK_URL is not set — skipping rebuild trigger.')
   }
