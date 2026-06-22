@@ -68,7 +68,7 @@ export function Hero() {
       >
         Europe&apos;s most
         <br />
-        <em className="italic">exclusive</em> VIP
+        <em className="italic">exclusive</em> VIP Party
         <br />
         weekends, handled.
       </motion.h1>

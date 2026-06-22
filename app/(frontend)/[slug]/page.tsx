@@ -1,6 +1,7 @@
 export const maxDuration = 30
 
 import { notFound } from 'next/navigation'
+import { draftMode } from 'next/headers'
 import type { Metadata } from 'next'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
@@ -44,7 +45,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function TripDetailPage({ params }: Props) {
   const { slug } = await params
-  const result = await getTripBySlug(slug)
+  const { isEnabled: preview } = await draftMode()
+  const result = await getTripBySlug(slug, preview)
 
   if (result.status !== 'ok') notFound()
 

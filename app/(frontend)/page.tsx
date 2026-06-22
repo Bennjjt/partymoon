@@ -1,6 +1,7 @@
 // Allow up to 30 s for the Neon DB to wake from cold/idle before timing out.
 export const maxDuration = 30
 
+import { draftMode } from 'next/headers'
 import { DestinationStrip, type DestinationOption } from '@/components/blocks/DestinationStrip'
 import { Hero } from '@/components/blocks/Hero'
 import { HowItWorks } from '@/components/blocks/HowItWorks'
@@ -25,7 +26,8 @@ export default async function HomePage({ searchParams }: PageProps) {
 
   // Fetch all trips (unfiltered) to build the destination list, then fetch
   // filtered trips for the grid separately if a dest filter is active.
-  const allResult = await getPublishedTrips()
+  const { isEnabled: preview } = await draftMode()
+  const allResult = await getPublishedTrips(undefined, preview)
   const allTrips = allResult.status === 'ok' ? allResult.trips : []
 
   const trips = dest

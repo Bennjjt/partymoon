@@ -1,5 +1,5 @@
 import { defineQuery } from 'next-sanity'
-import { client } from '@/lib/sanity/client'
+import { getClient } from '@/lib/sanity/client'
 import { urlFor } from '@/lib/sanity/image'
 import { type Trip, type CoverImage, getGradient } from '@/lib/data/trips'
 
@@ -36,7 +36,7 @@ const imageFragment = /* groq */ `
 const TRIPS_LIST_QUERY = defineQuery(/* groq */ `
   *[
     _type == "trip"
-    && status == "published"
+    && (status == "published" || $preview == true)
     && defined(slug.current)
   ] | order(startDate asc) {
     _id,
@@ -64,7 +64,7 @@ const TRIP_DETAIL_QUERY = defineQuery(/* groq */ `
   *[
     _type == "trip"
     && slug.current == $slug
-    && status == "published"
+    && (status == "published" || $preview == true)
   ][0] {
     _id,
     title,
@@ -335,12 +335,17 @@ function toTrip(doc: any): Trip {
 }
 
 // ── Queries ───────────────────────────────────────────────────────
-const fetchOptions = { next: { revalidate: 30 } }
+function fetchOptions(preview: boolean) {
+  return preview ? { cache: 'no-store' as const } : { next: { revalidate: 30 } }
+}
 
-export async function getPublishedTrips(destSlug?: string): Promise<TripsResult> {
+export async function getPublishedTrips(
+  destSlug?: string,
+  preview = false,
+): Promise<TripsResult> {
   try {
     const docs = await withCmsTimeout(
-      client.fetch(TRIPS_LIST_QUERY, {}, fetchOptions),
+      getClient(preview).fetch(TRIPS_LIST_QUERY, { preview }, fetchOptions(preview)),
     )
     let trips: Trip[] = (docs ?? []).map(toTrip)
     if (destSlug) {
@@ -354,10 +359,10 @@ export async function getPublishedTrips(destSlug?: string): Promise<TripsResult>
   }
 }
 
-export async function getTripBySlug(slug: string): Promise<TripResult> {
+export async function getTripBySlug(slug: string, preview = false): Promise<TripResult> {
   try {
     const doc = await withCmsTimeout(
-      client.fetch(TRIP_DETAIL_QUERY, { slug }, fetchOptions),
+      getClient(preview).fetch(TRIP_DETAIL_QUERY, { slug, preview }, fetchOptions(preview)),
     )
     if (!doc) return { status: 'not_found' }
     return { status: 'ok', trip: toTrip(doc) }
