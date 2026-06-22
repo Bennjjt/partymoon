@@ -140,6 +140,7 @@ export function getTripAvailability(trip: Trip): 'available' | 'sold-out' {
 export function formatDateRange(startDate: string, endDate: string): string {
   const start = new Date(startDate)
   const end = new Date(endDate)
+  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return ''
   const dayFmt = new Intl.DateTimeFormat('en-GB', { weekday: 'short', day: 'numeric' })
   const monthYear = new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric' }).format(end)
   return `${dayFmt.format(start)} – ${dayFmt.format(end)} ${monthYear}`
