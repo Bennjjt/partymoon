@@ -1,8 +1,8 @@
 'use client'
 
 import Image from 'next/image'
-import { PortableText } from 'next-sanity'
-import type { PortableTextBlock } from 'next-sanity'
+import { PortableText } from '@portabletext/react'
+import type { PortableTextBlock } from '@portabletext/types'
 import { motion, useReducedMotion } from 'framer-motion'
 import type { CoverImage, Trip } from '@/lib/data/trips'
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
