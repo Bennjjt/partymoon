@@ -1,25 +1,29 @@
-import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
-import {visionTool} from '@sanity/vision'
-import {presentationTool, defineDocuments} from 'sanity/presentation'
-import {schemaTypes} from './schemaTypes'
+import { defineConfig } from 'sanity'
+import { structureTool } from 'sanity/structure'
+import { visionTool } from '@sanity/vision'
+import { presentationTool, defineDocuments } from 'sanity/presentation'
+import { schemaTypes } from './sanity/schemaTypes'
 
-const previewUrlOrigin = (process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000').replace(/\/$/, '')
-const previewSecret = process.env.SANITY_STUDIO_PREVIEW_SECRET || ''
+// Studio is embedded in the Next.js app, so Presentation can use a relative
+// origin and there's no cross-site iframe — no third-party cookie issues.
+const previewOrigin = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const previewSecret = process.env.NEXT_PUBLIC_SANITY_PREVIEW_SECRET || ''
 
 export default defineConfig({
   name: 'default',
   title: 'Partymoon',
 
-  projectId: 'a6wgzngo',
-  dataset: 'production',
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+
+  basePath: '/admin',
 
   plugins: [
     structureTool(),
     visionTool(),
     presentationTool({
       previewUrl: {
-        origin: previewUrlOrigin,
+        origin: previewOrigin,
         preview: '/',
         previewMode: {
           enable: `/api/draft-mode/enable?secret=${previewSecret}`,
@@ -28,7 +32,7 @@ export default defineConfig({
       resolve: {
         locations: {
           trip: {
-            select: {title: 'title', slug: 'slug.current'},
+            select: { title: 'title', slug: 'slug.current' },
             resolve: (doc) => ({
               locations: [
                 {

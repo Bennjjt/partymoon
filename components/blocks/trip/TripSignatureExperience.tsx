@@ -1,4 +1,6 @@
-import { PortableText } from 'next-sanity'
+'use client'
+
+import { PortableText } from '@portabletext/react'
 import { RevealOnScroll } from '@/components/ui/RevealOnScroll'
 import { TripSectionHeader } from '@/components/blocks/trip/TripSectionHeader'
 import { SectionBg } from '@/components/blocks/trip/SectionBg'

@@ -1,5 +1,7 @@
+'use client'
+
 import Link from 'next/link'
-import { PortableText } from 'next-sanity'
+import { PortableText } from '@portabletext/react'
 import { formatPrice } from '@/lib/data/trips'
 import type { Trip } from '@/lib/data/trips'
 
