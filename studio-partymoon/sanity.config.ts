@@ -4,7 +4,7 @@ import {visionTool} from '@sanity/vision'
 import {presentationTool, defineDocuments} from 'sanity/presentation'
 import {schemaTypes} from './schemaTypes'
 
-const previewUrlOrigin = process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000'
+const previewUrlOrigin = (process.env.SANITY_STUDIO_PREVIEW_URL || 'http://localhost:3000').replace(/\/$/, '')
 const previewSecret = process.env.SANITY_STUDIO_PREVIEW_SECRET || ''
 
 export default defineConfig({
